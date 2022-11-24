@@ -1,23 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { otherContext } from '../../../Context/FeatureContext';
 
 
 const Navbar = () => {
+    const [currentUser, setCurrentUser] = useState('');
     const { handleClick } = useContext(otherContext);
     const { user, logOut } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
-        .then(()=>{})
-        .catch(err => console.error(err))
+            .then(() => { })
+            .catch(err => console.error(err))
     }
+
+    console.log(user?.email);
+    console.log(currentUser?.role);
+
+    // const {data: UserData, } = query
+
 
     const link = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        {/* <li><Link to='/login'>Login</Link></li> */}
+        {
+            currentUser?.role === 'buyer' && <li><Link to='/login'>My Orders</Link></li>
+        }
+        {
+            currentUser?.role === 'Seller' && <li><Link to='/login'>Add a product</Link></li>
+        }
+        {
+            currentUser?.role === 'admin' && <li><Link to='/login'>All Sellers</Link></li>
+        }
     </>
+
+    useEffect(() => {
+        // fetch(`http://localhost:5000/currentusers?email=${user?.email}`)
+        // const email = user?.email;
+        fetch(`http://localhost:5000/currentusers?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setCurrentUser(data))
+            .catch(err => console.log(err))
+    }, [user])
 
     return (
         <div className="navbar bg-base-100">

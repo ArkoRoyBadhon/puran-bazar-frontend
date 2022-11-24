@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Login = () => {
-
-    const { LogIn, GoogleSinUp } = useContext(AuthContext);
+    const [pCount, setPCount] = useState(null);
+    const { user: CurrentUser, LogIn, GoogleSinUp } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // console.log('outside', pCount);
+
+    // console.log('final', pCount);
+
     const handleLoginForm = (event) => {
+
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -17,7 +22,7 @@ const Login = () => {
             email,
             password
         }
-        console.log(info);
+        // console.log(info);
 
         LogIn(email, password)
             .then(result => {
@@ -28,11 +33,12 @@ const Login = () => {
 
     }
 
+
     const handleGoogle = () => {
         GoogleSinUp()
             .then(result => {
                 const user = result.user
-                console.log(user);
+                // console.log(user);
                 const saveinfo = {
                     name: user.displayName,
                     email: user.email,
@@ -42,6 +48,7 @@ const Login = () => {
                 navigate('/')
             })
             .catch(err => console.error(err))
+
     }
 
     const saveUser = (saveinfo) => {
