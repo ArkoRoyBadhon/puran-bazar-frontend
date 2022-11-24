@@ -1,21 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Loading from '../Loader/Loading';
 
 const CategoryPage = () => {
 
-    const fridges = useLoaderData();
+    // const fridges = useLoaderData();
+    // console.log('current Pathname 👉️', window.location.pathname);
+    const link = window.location.pathname
+    const smallPart = link.slice(link.length - 1, link.length)
+    console.log(smallPart);
 
+    const url = `http://localhost:5000/category/${smallPart}`
 
-    // const { data: fridges = [] } = useQuery({
-    //     queryKey: ['data'],
-    //     queryFn: async ({ params }) => {
-    //         const res = await fetch(`http://localhost:5000/category/${params.id}`)
-    //         const data = await res.json();
-    //         console.log(data);
-    //         return data;
-    //     }
-    // })
+    console.log(url);
+
+    const { data: fridges = [], isLoading } = useQuery({
+        queryKey: ['fridges'],
+        queryFn: async ({ params }) => {
+            const res = await fetch(url)
+            const data = await res.json();
+            // console.log(data);
+            return data;
+        }
+    })
+
+    if(isLoading) {
+        <Loading></Loading>
+    }
 
     return (
         <div className='max-w-screen-xl mx-auto'>
