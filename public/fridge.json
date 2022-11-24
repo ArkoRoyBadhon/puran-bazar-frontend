@@ -1,0 +1,98 @@
+[
+    {
+        "name": "WFD-1D4-GDEL/GDEH-XX Frost Refrigerator",
+        "photo": "https://ibb.co/HPJCr0x",
+        "company": "walton",
+        "originalPrice": 25000,
+        "resalePrice": 14500,
+        "yearUse": 3,
+        "sellerName": "Roky",
+        "postTime": "",
+        "verified": false,
+        "category": 1
+    },
+    {
+        "name": "Samsung Top Mount Refrigerator RT37K5532UT/D3 - 345L",
+        "photo": "https://i.ibb.co/wJm1hbC/samsung1.jpg",
+        "company": "samsung",
+        "originalPrice": 65000,
+        "resalePrice": 45600,
+        "yearUse": 3,
+        "sellerName": "Dilruba Akter",
+        "postTime": "",
+        "verified": false,
+        "category": 2
+    },
+    {
+        "name": "Direct Cool Refrigerator WFD-1F3-GDEL/GDEH-163 Liter",
+        "photo": "https://i.ibb.co/HVcqWwm/walton2.jpg",
+        "company": "walton",
+        "originalPrice": 26999,
+        "resalePrice": 18500,
+        "yearUse": 2,
+        "sellerName": "Ronaldo Haldar",
+        "postTime": "",
+        "verified": false,
+        "category": 1
+    },
+    {
+        "name": "Refrigerator WFD-1F3-GDEH-XX-Gross -176 Ltr",
+        "photo": "",
+        "company": "walton",
+        "originalPrice": 29990,
+        "resalePrice": 12500,
+        "yearUse": 7,
+        "sellerName": "Roky",
+        "postTime": "",
+        "verified": false,
+        "category": 1
+    },
+    {
+        "name": "Samsung 253Ltr RT27HAR9DUT/D3 Top Mount Refrigerator",
+        "photo": "https://i.ibb.co/HF6BL3F/samsung2.jpg",
+        "company": "samsung",
+        "originalPrice": 25000,
+        "resalePrice": 14500,
+        "yearUse": 3,
+        "sellerName": "Ben Tenysen",
+        "postTime": "",
+        "verified": false,
+        "category": 2
+    },
+    {
+        "name": "LG 643L SIDE-BY-SIDE-FRIDGE WITH LINEAR COMPRESSOR",
+        "photo": "https://i.ibb.co/09QGV5B/lg1.jpg",
+        "company": "LG",
+        "originalPrice": 299900,
+        "resalePrice": 145500,
+        "yearUse": 3,
+        "sellerName": "Akash ALi",
+        "postTime": "",
+        "verified": false,
+        "category": 3
+    },
+    {
+        "name": "LG UPRIGHT FREEZER",
+        "photo": "https://i.ibb.co/k6yFgMP/lg2.jpg",
+        "company": "LG",
+        "originalPrice": 52900,
+        "resalePrice": 36200,
+        "yearUse": 3,
+        "sellerName": "Durjoy Hasan",
+        "postTime": "",
+        "verified": false,
+        "category": 3
+    },
+    {
+        "name": "LG 437 LITER TOP MOUNT NO-FROST",
+        "photo": "https://i.ibb.co/ydmLzX8/lg3.jpg",
+        "company": "LG",
+        "originalPrice": 25000,
+        "resalePrice": 14500,
+        "yearUse": 3,
+        "sellerName": "Apurbo",
+        "postTime": "",
+        "verified": false,
+        "category": 3
+    }
+]
