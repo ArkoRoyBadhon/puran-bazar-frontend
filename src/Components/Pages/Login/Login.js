@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const Login = () => {
 
-    const { LogIn } = useContext(AuthContext);
+    const { LogIn, GoogleSinUp } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLoginForm = (event) => {
@@ -26,6 +26,15 @@ const Login = () => {
         })
         .catch(err => console.error(err))
 
+    }
+
+    const handleGoogle = () => {
+        GoogleSinUp()
+        .then(result => {
+            const user = result.user
+            navigate('/')
+        })
+        .catch(err => console.error(err))
     }
 
 
@@ -58,7 +67,7 @@ const Login = () => {
                         </div>
                         <p>New to PuranaBazar?? <Link to='/signup'>SignUp</Link></p>
                         <hr className='font-thin' />
-                        <button className="btn btn-block btn-primary">Continue With Google</button>
+                        <button onClick={handleGoogle} className="btn btn-block btn-primary">Continue With Google</button>
                     </form>
                 </div>
             </div>

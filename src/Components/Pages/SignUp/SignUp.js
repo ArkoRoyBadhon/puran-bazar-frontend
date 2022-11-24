@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
 
-    const { signUpWithEmail, updateUser } = useContext(AuthContext);
+    const { signUpWithEmail, updateUser, GoogleSinUp } = useContext(AuthContext);
 
     const handleSignUpForm = (event) => {
         event.preventDefault();
@@ -15,12 +15,11 @@ const SignUp = () => {
         const role = form.role.value;
         const password = form.password.value;
 
-        // const info = {
-        //     name,
-        //     email,
-        //     role,
-        //     password
-        // }
+        const saveinfo = {
+            name,
+            email,
+            role
+        }
         // console.log(info);
 
         signUpWithEmail(email, password)
@@ -31,7 +30,7 @@ const SignUp = () => {
                 }
                 updateUser(info)
                     .then(result => {
-                        // saveUser()
+                        saveUser(saveinfo)
                     })
                     .catch(err => console.error(err))
             })
@@ -39,10 +38,25 @@ const SignUp = () => {
                 form.reset()
                 alert('success signup')
             })
-
-
     }
 
+    const handleGoogle = () => {
+        GoogleSinUp()
+            .then(result => {
+                const user = result.user
+            })
+            .catch(err => console.error(err))
+    }
+
+    const saveUser = (saveinfo) => {
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveinfo)
+        })
+    }
 
     return (
         <div className="hero min-h-screen bg-base-200 my-10">
@@ -88,9 +102,9 @@ const SignUp = () => {
                         <div className="form-control mt-6">
                             <button className="btn bg-gradient-to-r from-cyan-600 to-blue-600 font-bold">SignUp</button>
                         </div>
-                        <p>New to PuranaBazar?? <Link to='/signup'>SignUp</Link></p>
+                        <p>New to PuranaBazar?? <Link to='/login'>Login</Link></p>
                         <hr className='font-thin' />
-                        <button className="btn btn-block btn-primary">Continue With Google</button>
+                        <button onClick={handleGoogle} className="btn btn-block btn-primary">Continue With Google</button>
                     </form>
                 </div>
             </div>
