@@ -6,7 +6,13 @@ import { otherContext } from '../../../Context/FeatureContext';
 
 const Navbar = () => {
     const { handleClick } = useContext(otherContext);
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(()=>{})
+        .catch(err => console.error(err))
+    }
 
     const link = <>
         <li><Link to='/'>Home</Link></li>
@@ -35,9 +41,9 @@ const Navbar = () => {
                 {user?.displayName}
                 {
                     user?.uid ?
-                    <Link className='mr-2'>LogOut</Link>
-                    :
-                    <Link className='mr-2' to='/login'>Login</Link>
+                        <Link onClick={handleLogOut} className='mr-2'>LogOut</Link>
+                        :
+                        <Link className='mr-2' to='/login'>Login</Link>
                 }
                 <label className="swap swap-rotate">
                     <input type="checkbox" />
