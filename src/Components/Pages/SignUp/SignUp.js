@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
 
     const { signUpWithEmail, updateUser, GoogleSinUp } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleSignUpForm = (event) => {
         event.preventDefault();
@@ -44,6 +46,14 @@ const SignUp = () => {
         GoogleSinUp()
             .then(result => {
                 const user = result.user
+                console.log(user);
+                const saveinfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: "buyer"
+                } 
+                saveUser(saveinfo)
+                navigate('/')
             })
             .catch(err => console.error(err))
     }

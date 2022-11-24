@@ -20,21 +20,38 @@ const Login = () => {
         console.log(info);
 
         LogIn(email, password)
-        .then(result => {
-            const user = result.user
-            navigate('/')
-        })
-        .catch(err => console.error(err))
+            .then(result => {
+                const user = result.user
+                navigate('/')
+            })
+            .catch(err => console.error(err))
 
     }
 
     const handleGoogle = () => {
         GoogleSinUp()
-        .then(result => {
-            const user = result.user
-            navigate('/')
+            .then(result => {
+                const user = result.user
+                console.log(user);
+                const saveinfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: "buyer"
+                }
+                saveUser(saveinfo)
+                navigate('/')
+            })
+            .catch(err => console.error(err))
+    }
+
+    const saveUser = (saveinfo) => {
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveinfo)
         })
-        .catch(err => console.error(err))
     }
 
 
