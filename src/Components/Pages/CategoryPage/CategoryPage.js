@@ -25,16 +25,16 @@ const CategoryPage = () => {
         }
     })
 
-    if(isLoading) {
+    if (isLoading) {
         <Loading></Loading>
     }
 
     return (
         <div className='max-w-screen-xl mx-auto'>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     fridges.map((fridge, i) => <div key={i}>
-                        <div className="card w-96 bg-base-100 shadow-xl h-[52rem]">
+                        <div className="card w-96 bg-base-100 shadow-xl h-[52rem] my-5 lg:my-10">
                             <figure><img src={fridge.photo} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{fridge.name}</h2>

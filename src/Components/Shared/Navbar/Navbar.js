@@ -25,7 +25,7 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         {/* <li><Link to='/login'>Login</Link></li> */}
         {
-            currentUser?.role === 'Buyer' && <li><Link to='/login'>My Orders</Link></li>
+            currentUser?.role === 'Buyer' && <li><Link to='/myorders'>My Orders</Link></li>
         }
         {
             currentUser?.role === 'Seller' && <li><Link to='/addproduct'>Add a product</Link></li>

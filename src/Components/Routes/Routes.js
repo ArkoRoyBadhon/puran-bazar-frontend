@@ -4,6 +4,7 @@ import AddProduct from '../Pages/AddProduct/AddProduct'
 import CategoryPage from '../Pages/CategoryPage/CategoryPage'
 import Home from '../Pages/Home/Home'
 import Login from '../Pages/Login/Login'
+import MyOrder from '../Pages/MyOrder/MyOrder'
 import SignUp from '../Pages/SignUp/SignUp'
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: '/addproduct',
                 element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/myorders',
+                element: <MyOrder></MyOrder>
             },
         ]
     }
