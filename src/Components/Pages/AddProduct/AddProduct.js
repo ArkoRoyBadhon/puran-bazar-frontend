@@ -32,7 +32,8 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success) {
-
+                    let date = new Date().toLocaleDateString();
+                    // console.log(date);
 
                     const itemInfo = {
                         name: data.productName,
@@ -45,12 +46,21 @@ const AddProduct = () => {
                         category: categoryVAlue,
                         condition: data.condition,
                         phone: data.phone,
+                        post: date,
                         description: data.description,
                         year_purchase: data.year_purchase,
                         location: data.location,
                         verify_user: data.verify_user,
                     }
                     console.log(itemInfo);
+
+                    fetch(`http://localhost:5000/addItem`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(itemInfo)
+                    })
                 }
             })
 
