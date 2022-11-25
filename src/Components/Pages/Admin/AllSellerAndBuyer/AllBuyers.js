@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import Loading from '../Loader/Loading';
+import Loading from '../../Loader/Loading';
 
 const AllBuyers = () => {
 

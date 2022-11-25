@@ -28,7 +28,10 @@ const Navbar = () => {
             currentUser?.role === 'Buyer' && <li><Link to='/myorders'>My Orders</Link></li>
         }
         {
-            currentUser?.role === 'Seller' && <li><Link to='/addproduct'>Add a product</Link></li>
+            currentUser?.role === 'Seller' && <>
+                <li><Link to='/addproduct'>Add a product</Link></li>
+                <li><Link to='/myproducts'>My Products</Link></li>
+            </>
         }
         {
             currentUser?.role === 'Admin' && <>

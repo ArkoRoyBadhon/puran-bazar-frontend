@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
@@ -22,25 +22,26 @@ const SignUp = () => {
             email,
             role
         }
-        // console.log(info);
-
+        // alert('inside')
         signUpWithEmail(email, password)
             .then(res => {
                 const user = res.user
+                // alert('success signup')
                 const info = {
                     displayName: name
                 }
                 updateUser(info)
                     .then(result => {
                         saveUser(saveinfo)
-                        
+                        alert('user saved')
                     })
                     .catch(err => console.error(err))
-            })
-            .then(data => {
+
                 form.reset()
-                alert('success signup')
                 navigate('/')
+            })
+            .catch(err => {
+                console.error(err);
             })
     }
 
@@ -53,7 +54,7 @@ const SignUp = () => {
                     name: user.displayName,
                     email: user.email,
                     role: "Buyer"
-                } 
+                }
                 saveUser(saveinfo)
                 navigate('/')
             })
@@ -68,11 +69,11 @@ const SignUp = () => {
             },
             body: JSON.stringify(saveinfo)
         })
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data)
-        })
-        .catch(err => console.error(err.message))
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.error(err.message))
     }
 
     return (

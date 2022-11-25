@@ -1,8 +1,8 @@
 import {createBrowserRouter} from 'react-router-dom'
 import Main from '../Layouts/MainLayout/Main'
-import AddProduct from '../Pages/AddProduct/AddProduct'
-import AllBuyers from '../Pages/AllSellerAndBuyer/AllBuyers'
-import AllSellers from '../Pages/AllSellerAndBuyer/AllSellers'
+import AddProduct from '../Pages/Seller/AddProduct/AddProduct'
+import AllBuyers from '../Pages/Admin/AllSellerAndBuyer/AllBuyers'
+import AllSellers from '../Pages/Admin/AllSellerAndBuyer/AllSellers'
 import Blog from '../Pages/Blog/Blog'
 import CategoryPage from '../Pages/CategoryPage/CategoryPage'
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
@@ -10,6 +10,7 @@ import Home from '../Pages/Home/Home'
 import Login from '../Pages/Login/Login'
 import MyOrder from '../Pages/MyOrder/MyOrder'
 import SignUp from '../Pages/SignUp/SignUp'
+import MyProducts from '../Pages/Seller/MyProducts/MyProducts'
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: '/allbuyers',
                 element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: '/myproducts',
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '*',

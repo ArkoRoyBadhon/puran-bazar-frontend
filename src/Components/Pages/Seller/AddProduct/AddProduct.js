@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../../../Context/AuthProvider';
 
 
 const AddProduct = () => {
+    const {user} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb_key
 
@@ -45,6 +47,9 @@ const AddProduct = () => {
                         resalePrice: data.resalePrice,
                         yearUse: data.year_use,
                         sellerName: data.sellerName,
+
+                        sellerEmail: user?.email,
+
                         category: categoryVAlue,
                         condition: data.condition,
                         phone: data.phone,
@@ -102,6 +107,12 @@ const AddProduct = () => {
                             </label>
                             <input {...register("sellerName", { required: 'Seller Name field is required' })} type="text" placeholder="Selller Name" className="input input-bordered" />
                         </div>
+                        {/* <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Seller Email</span>
+                            </label>
+                            <input defaultValue={user?.email} disabled {...register("sellerEmail", { required: 'Seller Email field is required' })} type="text" placeholder="Selller Name" className="input input-bordered" />
+                        </div> */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Resale Price</span>
@@ -184,7 +195,7 @@ const AddProduct = () => {
 
 
 
-                        <input className='btn btn-accent w-full mt-4' value="Add Doctor" type="submit" />
+                        <input className='btn btn-accent w-full mt-4' value="Add Item" type="submit" />
                     </form>
                 </div>
             </div>
