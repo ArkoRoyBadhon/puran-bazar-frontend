@@ -23,7 +23,7 @@ const Navbar = () => {
 
     const link = <>
         <li><Link to='/'>Home</Link></li>
-        {/* <li><Link to='/login'>Login</Link></li> */}
+        <li><Link to='/blog'>Blog</Link></li>
         {
             currentUser?.role === 'Buyer' && <li><Link to='/myorders'>My Orders</Link></li>
         }
