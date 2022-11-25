@@ -1,23 +1,23 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const otherContext = createContext();
 
-const FeatureContext = ({children}) => {
+const FeatureContext = ({ children }) => {
     const [iconValue, setIconValue] = useState("Moon")
     const [theme, setTheme] = useState("dark")
-
 
 
     const handleClick = (event) => {
         if (iconValue === 'Moon') {
             setIconValue("Sun")
-            setTheme("light")
+            localStorage.setItem('theme', 'light');
+            
         } else {
             setIconValue('Moon')
-            setTheme("dark")
+            localStorage.setItem('theme', 'dark');
+            
         }
-        // console.log(event.target.parentElement.parentElement.getAttribute('data-theme'));
-        console.log(event.target.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute('data-theme'));
+        
 
     }
 
@@ -26,6 +26,14 @@ const FeatureContext = ({children}) => {
         theme,
 
     }
+
+    useEffect(() => {
+        setTheme(localStorage.getItem('theme'))
+        // const status = localStorage.getItem('theme')
+        // if(status === "light") {
+
+        // }
+    }, [iconValue])
 
     return (
         <otherContext.Provider value={otherInfo}>
