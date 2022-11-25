@@ -25,13 +25,13 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         {/* <li><Link to='/login'>Login</Link></li> */}
         {
-            currentUser?.role === 'buyer' && <li><Link to='/login'>My Orders</Link></li>
+            currentUser?.role === 'Buyer' && <li><Link to='/login'>My Orders</Link></li>
         }
         {
-            currentUser?.role === 'Seller' && <li><Link to='/login'>Add a product</Link></li>
+            currentUser?.role === 'Seller' && <li><Link to='/addproduct'>Add a product</Link></li>
         }
         {
-            currentUser?.role === 'admin' && <li><Link to='/login'>All Sellers</Link></li>
+            currentUser?.role === 'Admin' && <li><Link to='/login'>All Sellers</Link></li>
         }
     </>
 

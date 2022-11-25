@@ -42,7 +42,7 @@ const Login = () => {
                 const saveinfo = {
                     name: user.displayName,
                     email: user.email,
-                    role: "buyer"
+                    role: "Buyer"
                 }
                 saveUser(saveinfo)
                 navigate('/')
