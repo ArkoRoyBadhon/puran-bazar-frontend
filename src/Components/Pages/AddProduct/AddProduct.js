@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb_key
+
+    const navigate = useNavigate()
 
 
     const handleAddProductForm = (data) => {
@@ -61,6 +63,12 @@ const AddProduct = () => {
                         },
                         body: JSON.stringify(itemInfo)
                     })
+                        .then(res => res.json())
+                        .then(data => {
+                            navigate('/')
+                        })
+                    alert('Successfully item added')
+                    navigate('/')
                 }
             })
 

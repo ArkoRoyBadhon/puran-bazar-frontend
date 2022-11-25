@@ -43,9 +43,15 @@ const CategoryPage = () => {
                                 <h4 className="text-xl">Original Price: {fridge.originalPrice} TK</h4>
                                 <h5 className="text-lg">Used: {fridge.yearUse} years</h5>
                                 <p>Seller: {fridge.sellerName}</p>
-                                <p>Post Time: {fridge.postTime}</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Book Now</button>
+                                <p className="text-md">{fridge.description}</p>
+                                <p>Post Time: {fridge.post}</p>
+                                <div className="flex justify-between">
+                                    <div className="card-actions justify-start">
+                                        <button className="btn btn-primary">Add WishList</button>
+                                    </div>
+                                    <div className="card-actions justify-end">
+                                        <button className="btn btn-primary">Book Now</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

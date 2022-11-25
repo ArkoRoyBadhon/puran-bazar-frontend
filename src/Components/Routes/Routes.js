@@ -1,6 +1,8 @@
 import {createBrowserRouter} from 'react-router-dom'
 import Main from '../Layouts/MainLayout/Main'
 import AddProduct from '../Pages/AddProduct/AddProduct'
+import AllBuyers from '../Pages/AllSellerAndBuyer/AllBuyers'
+import AllSellers from '../Pages/AllSellerAndBuyer/AllSellers'
 import Blog from '../Pages/Blog/Blog'
 import CategoryPage from '../Pages/CategoryPage/CategoryPage'
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/allsellers',
+                element: <AllSellers></AllSellers>
+            },
+            {
+                path: '/allbuyers',
+                element: <AllBuyers></AllBuyers>
             },
             {
                 path: '*',

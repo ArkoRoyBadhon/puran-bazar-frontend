@@ -33,12 +33,14 @@ const SignUp = () => {
                 updateUser(info)
                     .then(result => {
                         saveUser(saveinfo)
+                        
                     })
                     .catch(err => console.error(err))
             })
             .then(data => {
                 form.reset()
                 alert('success signup')
+                navigate('/')
             })
     }
 
@@ -66,6 +68,11 @@ const SignUp = () => {
             },
             body: JSON.stringify(saveinfo)
         })
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data)
+        })
+        .catch(err => console.error(err.message))
     }
 
     return (
