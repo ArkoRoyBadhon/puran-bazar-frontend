@@ -5,52 +5,46 @@ import axios from 'axios';
 const ReportedItem = () => {
     const [reportData, setReportData] = useState([])
 
-    // axios.get('http://localhost:5000/report')
-    //     .then(function (response) {
-    //         // handle success
-    //         console.log(response.data);
-    //         setReportData(response.data);
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
+    axios.get('http://localhost:5000/report')
+        .then(function (response) {
+            // handle success
+            console.log(response.data);
+            setReportData(response.data);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 
     const handleReportDelete = (id) => {
-        // fetch(`http://localhost:5000/reportdelete?id=${id}`, {
-        //     method: 'DELETE'
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-
-        //         alert('report has been deleted')
-        //     })
-        //     .catch(error => console.log(error))
 
         fetch(`http://localhost:5000/reportdelete?id=${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
         .then(data => {
-            alert("success")
+            alert("report delete")
         })
 
-        // const res = fetch(`http://localhost:5000/reportdelete?id=${id}`, {
-        //     method: 'DELETE',
-        // })
-        // const data = res.json()
-        // return data;
+        fetch(`http://localhost:5000/fridgedelete?id=${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert("fridge delete")
+        })
+
     }
 
-    useEffect(() => {
-        fetch('http://localhost:5000/report')
-            .then(res => res.json())
-            .then(data => setReportData(data))
-            .catch(error => console.log(error))
-    }, [reportData])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/report')
+    //         .then(res => res.json())
+    //         .then(data => setReportData(data))
+    //         .catch(error => console.log(error))
+    // }, [reportData])
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <h2>this is reporteditems</h2>
             <table className='table w-3/5 mx-auto'>
                 <thead>

@@ -30,7 +30,7 @@ const AllBuyers = () => {
 
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <table className='table w-3/5 mx-auto my-12'>
                 <thead>
                     <th>Name</th>

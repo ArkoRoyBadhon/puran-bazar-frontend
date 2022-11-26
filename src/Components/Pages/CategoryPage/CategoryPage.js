@@ -54,7 +54,7 @@ const CategoryPage = () => {
     },[user])
 
     return (
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='max-w-screen-xl min-h-screen mx-auto'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     fridges.map((fridge, i) => <div key={i}>
