@@ -59,7 +59,7 @@ const AddProduct = () => {
                         location: data.location,
                         verify_user: data.verify_user,
                     }
-                    console.log(itemInfo);
+                    // console.log(itemInfo);
 
                     fetch(`http://localhost:5000/addItem`, {
                         method: 'POST',

@@ -15,7 +15,7 @@ const Navbar = () => {
             .catch(err => console.error(err))
     }
 
-    console.log(user?.email);
+    // console.log(user?.email);
     console.log(currentUser?.role);
 
     // const {data: UserData, } = query
@@ -37,6 +37,7 @@ const Navbar = () => {
             currentUser?.role === 'Admin' && <>
                 <li><Link to='/allsellers'>All Sellers</Link></li>
                 <li><Link to='/allbuyers'>All Buyers</Link></li>
+                <li><Link to='/reporteditems'>Reported Items</Link></li>
             </>
         }
     </>

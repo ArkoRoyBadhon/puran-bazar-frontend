@@ -1,20 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
-import { set } from 'react-hook-form';
+// import { set } from 'react-hook-form';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import Loading from '../../Loader/Loading';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
-    const [storeData, setStoreData] = useState(false);
+    const [storeData, setStoreData] = useState(true);
 
     const url = `http://localhost:5000/myproducts?email=${user?.email}`
+
     const { data: fridges = [], isLoading } = useQuery({
-        queryKey: ['fridges', "storeData", "user"],
+        queryKey: ['fridges'],
         queryFn: async () => {
             const res = await fetch(url)
             const data = await res.json();
             // console.log(data);
+            setStoreData(false)
             return data;
         }
     })
@@ -35,18 +37,23 @@ const MyProducts = () => {
             })
     }
 
-    const actionReload = () => {
-        setStoreData(true);
-    }
+
 
     if (isLoading) {
         <Loading></Loading>
     }
 
-    useEffect(()=>{
-        setStoreData(false)
-        actionReload();
-    },[])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         if(storeData){
+    //             // window.location.reload(); 
+    //         }
+    //     }, 500);
+    // }, [storeData])
+
+    if (storeData) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='max-w-screen-xl mx-auto'>

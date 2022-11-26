@@ -1,19 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
+// import { useLoaderData } from 'react-router-dom';
 import Loading from '../Loader/Loading';
 
 const CategoryPage = () => {
-
-    // const fridges = useLoaderData();
-    // console.log('current Pathname 👉️', window.location.pathname);
+    const {user} = useContext(AuthContext);
+    const [cUser, SetCUser] = useState('');
     const link = window.location.pathname
     const smallPart = link.slice(link.length - 1, link.length)
-    console.log(smallPart);
+    // console.log(smallPart);
 
     const url = `http://localhost:5000/category/${smallPart}`
 
-    console.log(url);
+    // console.log(url);
 
     const { data: fridges = [], isLoading } = useQuery({
         queryKey: ['fridges'],
@@ -25,9 +25,33 @@ const CategoryPage = () => {
         }
     })
 
+    const handleReportBtn = (allData) => {
+        fetch(`http://localhost:5000/report`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(allData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            alert('report added')
+        })
+    }
+
     if (isLoading) {
         <Loading></Loading>
     }
+
+    useEffect(()=> {
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            SetCUser(data)
+        })
+    },[user])
 
     return (
         <div className='max-w-screen-xl mx-auto'>
@@ -53,6 +77,12 @@ const CategoryPage = () => {
                                         <button className="btn btn-primary">Book Now</button>
                                     </div>
                                 </div>
+                                {
+                                    cUser?.role === "Buyer" && <>
+                                        <hr className='font-thin' />
+                                        <div onClick={()=>handleReportBtn(fridge)} className="btn btn-error">Report to the Admin</div>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>)

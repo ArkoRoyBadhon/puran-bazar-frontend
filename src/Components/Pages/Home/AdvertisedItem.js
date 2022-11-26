@@ -33,9 +33,9 @@ const AdvertisedItem = () => {
                                         <p className="text-md">{fridge.description}</p>
                                         <p>Post Time: {fridge.post}</p>
                                         <div className="flex justify-between">
-                                            <div className="card-actions justify-start">
+                                            {/* <div className="card-actions justify-start">
                                                 <button className="btn btn-primary">Add WishList</button>
-                                            </div>
+                                            </div> */}
                                             <div className="card-actions justify-end">
                                                 <button className="btn btn-primary">Book Now</button>
                                             </div>

@@ -11,6 +11,7 @@ import Login from '../Pages/Login/Login'
 import MyOrder from '../Pages/MyOrder/MyOrder'
 import SignUp from '../Pages/SignUp/SignUp'
 import MyProducts from '../Pages/Seller/MyProducts/MyProducts'
+import ReportedItem from '../Pages/Admin/ReportedItem/ReportedItem'
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             {
                 path: '/myproducts',
                 element: <MyProducts></MyProducts>
+            },
+            {
+                path: '/reporteditems',
+                element: <ReportedItem></ReportedItem>
             },
             {
                 path: '*',

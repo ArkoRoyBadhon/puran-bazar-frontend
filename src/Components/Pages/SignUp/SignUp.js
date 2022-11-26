@@ -49,7 +49,7 @@ const SignUp = () => {
         GoogleSinUp()
             .then(result => {
                 const user = result.user
-                console.log(user);
+                // console.log(user);
                 const saveinfo = {
                     name: user.displayName,
                     email: user.email,
@@ -71,7 +71,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
             })
             .catch(err => console.error(err.message))
     }
