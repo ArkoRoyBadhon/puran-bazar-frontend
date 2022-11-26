@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { set } from 'react-hook-form';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import Loading from '../../Loader/Loading';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
+    const [storeData, setStoreData] = useState(false);
 
     const url = `http://localhost:5000/myproducts?email=${user?.email}`
     const { data: fridges = [], isLoading } = useQuery({
-        queryKey: ['fridges'],
-        queryFn: async ({ params }) => {
+        queryKey: ['fridges', "storeData", "user"],
+        queryFn: async () => {
             const res = await fetch(url)
             const data = await res.json();
             // console.log(data);
@@ -17,29 +19,38 @@ const MyProducts = () => {
         }
     })
 
-    const handleAdvertise = (id) => {
-        fetch(`http://localhost:5000/advertisement?id=${id}`, {
-            method: 'POST',
+
+    const handleAdvertise = (alldata) => {
+        fetch(`http://localhost:5000/advertisementpost`, {
+            method: "POST",
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(alldata)
         })
-        .then(res => res.json())
-        .then(data => {
-            alert('successfully added to the advertisement')
-        })
-    
-        
+            .then(res => res.json())
+            .then(data => {
+                // setStoreData(data);
+                alert('successfully added to the advertisement')
+            })
+    }
+
+    const actionReload = () => {
+        setStoreData(true);
     }
 
     if (isLoading) {
         <Loading></Loading>
     }
 
+    useEffect(()=>{
+        setStoreData(false)
+        actionReload();
+    },[])
 
     return (
         <div className='max-w-screen-xl mx-auto'>
-            <h2>this is my products</h2>
+            {/* <h2>this is my products</h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     fridges.map((fridge, i) => <div key={i}>
@@ -57,7 +68,7 @@ const MyProducts = () => {
                                 <p>Post Time: {fridge.post}</p>
                                 <div className="flex justify-between">
                                     <div className="card-actions justify-start">
-                                        <button onClick={()=>handleAdvertise(fridge._id)} className="btn btn-primary">Advertise</button>
+                                        <button onClick={() => handleAdvertise(fridge)} className="btn btn-primary">Advertise</button>
                                     </div>
                                     <div className="card-actions justify-end">
                                         <button className="btn btn-primary">Book Now</button>
