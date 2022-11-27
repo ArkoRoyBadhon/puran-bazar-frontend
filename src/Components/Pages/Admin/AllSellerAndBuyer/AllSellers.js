@@ -22,9 +22,20 @@ const AllSellers = () => {
         return sellers;
     }
 
+    const handleVerifyBuyer = (id) => {
+        fetch(`http://localhost:5000/sellerVerify?id=${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => alert('success'))
+        
+    }
 
-    if(isLoading) {
-    return <Loading></Loading>
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
 
@@ -32,10 +43,13 @@ const AllSellers = () => {
         <div className='min-h-screen'>
             <table className='table w-3/5 mx-auto my-12'>
                 <thead>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Action</th>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                        <th>verify</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
@@ -45,10 +59,13 @@ const AllSellers = () => {
                                 <td>{seller.email}</td>
                                 <td>{seller.role}</td>
                                 <td>
-                                    <div onClick={()=>handleDeleteBuyer(seller._id)} className="btn btn-error">Delete</div>
+                                    <div onClick={() => handleDeleteBuyer(seller._id)} className="btn btn-error">Delete</div>
+                                </td>
+                                <td>
+                                    <div onClick={() => handleVerifyBuyer(seller._id)} className="btn btn-error">Verify</div>
                                 </td>
                             </tr>
-                            )
+                        )
                     }
                 </tbody>
             </table>

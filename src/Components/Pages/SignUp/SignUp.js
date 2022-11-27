@@ -33,7 +33,7 @@ const SignUp = () => {
                 updateUser(info)
                     .then(result => {
                         saveUser(saveinfo)
-                        alert('user saved')
+                        // alert('user saved')
                     })
                     .catch(err => console.error(err))
 
@@ -62,6 +62,7 @@ const SignUp = () => {
     }
 
     const saveUser = (saveinfo) => {
+        console.log('inside saaveUser',saveinfo);
         fetch(`http://localhost:5000/users`, {
             method: 'POST',
             headers: {
@@ -72,6 +73,7 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
+                console.log('user saved');
             })
             .catch(err => console.error(err.message))
     }

@@ -74,7 +74,12 @@ const CategoryPage = () => {
                                         <button className="btn btn-primary">Add WishList</button>
                                     </div>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Book Now</button>
+                                        {
+                                            cUser?.role === "Buyer" ? 
+                                            <button className="btn btn-primary">Book Now</button>
+                                            :
+                                            <button disabled className="btn btn-primary">Book Now</button>
+                                        }
                                     </div>
                                 </div>
                                 {

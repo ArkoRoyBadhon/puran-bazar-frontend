@@ -14,7 +14,7 @@ const AdvertisedItem = () => {
     })
 
     return (
-        <div class="h-[55vh] scrollbar scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
+        <div className="h-[55vh] scrollbar scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
             {/* <div class="h-64"></div> */}
             <div className='max-w-screen-xl mx-auto'>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">

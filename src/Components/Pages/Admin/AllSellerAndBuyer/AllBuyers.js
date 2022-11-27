@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../../Context/AuthProvider';
 import Loading from '../../Loader/Loading';
 
 const AllBuyers = () => {
+    const { deleteUserFromFirebase } = useContext(AuthContext);
 
     const { data: buyers = [], isLoading } = useQuery({
         queryKey: ['buyers'],
@@ -14,18 +16,26 @@ const AllBuyers = () => {
         }
     })
 
-    const handleDeleteBuyer = async (id) => {
-        const res = fetch(`http://localhost:5000/buyerDelete?id=${id}`, {
-            method: 'DELETE',
-        })
-        const data = res.json()
-        buyers = data
-        return buyers;
+    const handleDeleteBuyer = async (id,email) => {
+        // fetch(`http://localhost:5000/buyerDelete?id=${id}`, {
+        //     method: 'DELETE',
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+            // alert(email)
+        deleteUserFromFirebase(email)
+            .then(() => alert('user delete from firebase'))
+        // })
+        // buyers = data
+
+
+        // return buyers;
     }
 
 
-    if(isLoading) {
-    return <Loading></Loading>
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
 
@@ -33,10 +43,12 @@ const AllBuyers = () => {
         <div className='min-h-screen'>
             <table className='table w-3/5 mx-auto my-12'>
                 <thead>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Action</th>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
@@ -46,10 +58,10 @@ const AllBuyers = () => {
                                 <td>{buyer.email}</td>
                                 <td>{buyer.role}</td>
                                 <td>
-                                    <div onClick={()=>handleDeleteBuyer(buyer._id)} className="btn btn-error">Delete</div>
+                                    <div onClick={() => handleDeleteBuyer(buyer._id, buyer.email)} className="btn btn-error">Delete</div>
                                 </td>
                             </tr>
-                            )
+                        )
                     }
                 </tbody>
             </table>
