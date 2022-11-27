@@ -12,6 +12,9 @@ import MyOrder from '../Pages/MyOrder/MyOrder'
 import SignUp from '../Pages/SignUp/SignUp'
 import MyProducts from '../Pages/Seller/MyProducts/MyProducts'
 import ReportedItem from '../Pages/Admin/ReportedItem/ReportedItem'
+import Dashboard from '../Pages/Dashboard/Dashboard'
+import DashboardLayout from '../Layouts/DashBoardLayout/DashboardLayout'
+import PrivateRoute from '../Pages/PrivateRoute/PrivateRoute'
 
 const router = createBrowserRouter([
     {
@@ -39,33 +42,45 @@ const router = createBrowserRouter([
                 path: '/addproduct',
                 element: <AddProduct></AddProduct>
             },
-            {
-                path: '/myorders',
-                element: <MyOrder></MyOrder>
-            },
+            
             {
                 path: '/blog',
                 element: <Blog></Blog>
             },
-            {
-                path: '/allsellers',
-                element: <AllSellers></AllSellers>
-            },
-            {
-                path: '/allbuyers',
-                element: <AllBuyers></AllBuyers>
-            },
-            {
-                path: '/myproducts',
-                element: <MyProducts></MyProducts>
-            },
-            {
-                path: '/reporteditems',
-                element: <ReportedItem></ReportedItem>
-            },
+            
             {
                 path: '*',
                 element: <ErrorPage></ErrorPage>
+            },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myorders',
+                element: <MyOrder></MyOrder>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AllSellers></AllSellers>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <MyProducts></MyProducts>
+            },
+            {
+                path: '/dashboard/reporteditems',
+                element: <ReportedItem></ReportedItem>
             },
         ]
     }

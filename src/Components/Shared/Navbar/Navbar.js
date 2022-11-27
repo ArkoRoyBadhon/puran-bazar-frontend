@@ -24,22 +24,9 @@ const Navbar = () => {
     const link = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-        {
-            currentUser?.role === 'Buyer' && <li><Link to='/myorders'>My Orders</Link></li>
-        }
-        {
-            currentUser?.role === 'Seller' && <>
-                <li><Link to='/addproduct'>Add a product</Link></li>
-                <li><Link to='/myproducts'>My Products</Link></li>
-            </>
-        }
-        {
-            currentUser?.role === 'Admin' && <>
-                <li><Link to='/allsellers'>All Sellers</Link></li>
-                <li><Link to='/allbuyers'>All Buyers</Link></li>
-                <li><Link to='/reporteditems'>Reported Items</Link></li>
-            </>
-        }
+        <li><Link to='/dashboard'>DashBoard</Link></li>
+        
+        
     </>
 
     useEffect(() => {

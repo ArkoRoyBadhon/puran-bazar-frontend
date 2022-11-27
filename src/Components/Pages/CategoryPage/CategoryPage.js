@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 // import { useLoaderData } from 'react-router-dom';
 import Loading from '../Loader/Loading';
+import ModalBuy from './ModalBuy';
 
 const CategoryPage = () => {
     const { user } = useContext(AuthContext);
@@ -39,6 +41,43 @@ const CategoryPage = () => {
                 // console.log(data);
                 alert('report added')
             })
+    }
+
+    const handleBookingForm = (event) => {
+        event.preventDefault();
+        const form = event.target;
+
+        const name = form.name.value;
+        const email = form.email.value;
+        const  itemName = form.itemName.value;
+        const photo = form.photo.value;
+        const price = form.price.value;
+        const phone = form.phone.value;
+        const location = form.meetLocation.value;
+
+        const formInfo = {
+            name: name,
+            email: email,
+            itemname: itemName,
+            photo: photo,
+            price: price,
+            phone: phone,
+            location: location
+        }
+
+        console.log(formInfo);
+        fetch(`http://localhost:5000/bookings`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(formInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert('data successfully post')
+        })
+
     }
 
     if (isLoading) {
@@ -81,10 +120,41 @@ const CategoryPage = () => {
                                     <div className="card-actions justify-end">
                                         {
                                             cUser?.role === "Buyer" ?
-                                                <button className="btn btn-primary btn-sm lg:btn-md">Book Now</button>
+                                                <label htmlFor="book-modal" className="btn btn-primary btn-sm lg:btn-md">Book Now</label>
                                                 :
-                                                <button disabled className="btn btn-sm lg:btn-md btn-primary">Book Now</button>
+                                                <label htmlFor="my-modal" className="btn btn-sm lg:btn-md btn-primary">Book Now</label>
                                         }
+                                    </div>
+                                    {/* modal code  */}
+                                    <input type="checkbox" id="book-modal" className="modal-toggle" />
+                                    <div className="modal">
+                                        <div className="modal-box">
+                                            {
+                                                user?.uid ?
+                                                    <div className="">
+                                                        <ModalBuy handleBookingForm={handleBookingForm} fridge={fridge}></ModalBuy>
+                                                    </div>
+                                                    :
+                                                    <div className="">
+                                                        <h3 className="font-bold text-lg">Sorry!! This Features is not available right now</h3>
+                                                        <p className="py-4">Please Login with Buyer Account..</p>
+                                                    </div>
+                                            }
+                                            <div className="modal-action">
+                                                <label htmlFor="book-modal" className="btn">{user?.uid ? "cancel" : "ok"}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* modal code  */}
+                                    <input type="checkbox" id="my-modal" className="modal-toggle" />
+                                    <div className="modal">
+                                        <div className="modal-box">
+                                            <h3 className="font-bold text-lg">Sorry!! This Features is not available right now</h3>
+                                            <p className="py-4">Please Login with Buyer Account..</p>
+                                            <div className="modal-action">
+                                                <label htmlFor="my-modal" className="btn">ok</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {

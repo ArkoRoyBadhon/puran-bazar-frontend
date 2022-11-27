@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <div className='max-w-screen-lg min-h-screen mx-auto bg-slate-200 px-10 rounded-2xl'>
+        <div className='max-w-screen-lg min-h-screen mx-auto bg-slate-200 px-10 rounded-2xl mb-10'>
             <h4 className="text-2xl text-red-600 font-bold my-10 pt-10">Blogs</h4>
             <div data-aos="fade-right" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
                 <div className="card w-92 bg-base-100 shadow-xl">

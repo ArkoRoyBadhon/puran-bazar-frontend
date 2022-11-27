@@ -21,8 +21,8 @@ const AdvertisedItem = () => {
                     {
                         fridges.map((fridge, i) =>
                             <div key={i} className="" >
-                                <div className="card w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl h-[48rem] my-5 lg:my-10">
-                                    <figure><img src={fridge.photo} alt="Shoes" /></figure>
+                                <div data-aos="fade-right" className="card h-[40rem] w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl my-5 lg:my-10">
+                                    <figure><img className='h-48' src={fridge.photo} alt="Shoes" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{fridge.name}</h2>
                                         <small>{}</small>

@@ -21,18 +21,18 @@ const ReportedItem = () => {
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/reportdelete?id=${id}`, {
             method: "DELETE"
         })
-        .then(res => res.json())
-        .then(data => {
-            alert("report delete")
-        })
+            .then(res => res.json())
+            .then(data => {
+                alert("report delete")
+            })
 
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
             method: "DELETE"
         })
-        .then(res => res.json())
-        .then(data => {
-            alert("fridge delete")
-        })
+            .then(res => res.json())
+            .then(data => {
+                alert("fridge delete")
+            })
 
     }
 
@@ -44,28 +44,30 @@ const ReportedItem = () => {
     // }, [reportData])
 
     return (
-        <div className='min-h-screen'>
-            <h2>this is reporteditems</h2>
-            <table className='table w-3/5 mx-auto'>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Company</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        reportData?.map((report, i) => <tr key={i}>
-                            <td>{report.name}</td>
-                            <td>{report.company}</td>
-                            <td>
-                                <div onClick={() => handleReportDelete(report._id)} className="btn btn-error">delete</div>
-                            </td>
-                        </tr>)
-                    }
-                </tbody>
-            </table>
+        <div className='min-h-screen mt-10'>
+            <div className="bg-slate-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
+                <h2 className='font-bold text-2xl text-red-600 mb-5'>Report List</h2>
+                <table className='table w-3/5 mx-auto'>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Company</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            reportData?.map((report, i) => <tr key={i}>
+                                <td>{report.name}</td>
+                                <td>{report.company}</td>
+                                <td>
+                                    <div onClick={() => handleReportDelete(report._id)} className="btn btn-error">delete</div>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

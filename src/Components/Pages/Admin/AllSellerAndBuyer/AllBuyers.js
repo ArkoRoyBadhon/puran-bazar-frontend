@@ -16,20 +16,11 @@ const AllBuyers = () => {
         }
     })
 
-    const handleDeleteBuyer = async (id,email) => {
-        // fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/buyerDelete?id=${id}`, {
-        //     method: 'DELETE',
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-            // alert(email)
+    const handleDeleteBuyer = async (id, email) => {
+
         deleteUserFromFirebase(email)
             .then(() => alert('user delete from firebase'))
-        // })
-        // buyers = data
 
-
-        // return buyers;
     }
 
 
@@ -40,31 +31,34 @@ const AllBuyers = () => {
 
 
     return (
-        <div className='min-h-screen'>
-            <table className='table w-3/5 mx-auto my-12'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        buyers?.map(buyer =>
-                            <tr key={buyer._id}>
-                                <td>{buyer.name}</td>
-                                <td>{buyer.email}</td>
-                                <td>{buyer.role}</td>
-                                <td>
-                                    <div onClick={() => handleDeleteBuyer(buyer._id, buyer.email)} className="btn btn-error">Delete</div>
-                                </td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+        <div className='min-h-screen mt-10'>
+            <div className="bg-slate-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
+                <h2 className='font-bold text-2xl text-red-600 mb-5'>Buyer List</h2>
+                <table className='table-sm md:table w-3/5 mx-auto mt-12'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            buyers?.map(buyer =>
+                                <tr key={buyer._id}>
+                                    <td>{buyer.name}</td>
+                                    <td>{buyer.email}</td>
+                                    <td>{buyer.role}</td>
+                                    <td>
+                                        <div onClick={() => handleDeleteBuyer(buyer._id, buyer.email)} className="btn btn-error btn-sm p-0 m-0 md:btn-md">Delete</div>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
