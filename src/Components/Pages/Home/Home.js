@@ -23,7 +23,7 @@ const Home = () => {
         },
     ]
     return (
-        <div>
+        <div className='my-10'>
             <Banner></Banner>
             <h4 className="text-2xl text-center font-bold mt-20 mb-8">Advertisement</h4>
             <AdvertisedItem></AdvertisedItem>
