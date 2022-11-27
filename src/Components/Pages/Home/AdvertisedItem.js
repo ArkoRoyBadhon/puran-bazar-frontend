@@ -25,7 +25,7 @@ const AdvertisedItem = () => {
                                     <figure><img src={fridge.photo} alt="Shoes" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{fridge.name}</h2>
-                                        <small>{ }</small>
+                                        <small>{}</small>
                                         <h4 className="text-xl">Resale Price: {fridge.resalePrice} TK</h4>
                                         <h4 className="text-xl">Original Price: {fridge.originalPrice} TK</h4>
                                         <h5 className="text-lg">Used: {fridge.yearUse} years</h5>
@@ -33,9 +33,6 @@ const AdvertisedItem = () => {
                                         <p className="text-md">{fridge.description}</p>
                                         <p>Post Time: {fridge.post}</p>
                                         <div className="flex justify-between">
-                                            {/* <div className="card-actions justify-start">
-                                                <button className="btn btn-primary">Add WishList</button>
-                                            </div> */}
                                             <div className="card-actions justify-end">
                                                 <button className="btn btn-primary btn-sm lg:btn-md">Book Now</button>
                                             </div>
