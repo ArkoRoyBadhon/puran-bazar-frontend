@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../../Loader/Loading';
+import { FaCheck } from 'react-icons/fa';
 
 const AllSellers = () => {
     const { data: sellers = [], isLoading } = useQuery({
@@ -22,16 +23,29 @@ const AllSellers = () => {
         return sellers;
     }
 
-    const handleVerifyBuyer = (id) => {
+    const handleVerifyBuyer = (id, email) => {
         fetch(`http://localhost:5000/sellerVerify?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             }
         })
-        .then(res => res.json())
-        .then(data => alert('success'))
-        
+            .then(res => res.json())
+            .then(data => alert('success'))
+
+
+        fetch(`http://localhost:5000/usersverify?email=${email}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('fridge update')
+            })
+
+
     }
 
     if (isLoading) {
@@ -62,7 +76,13 @@ const AllSellers = () => {
                                     <div onClick={() => handleDeleteBuyer(seller._id)} className="btn btn-error">Delete</div>
                                 </td>
                                 <td>
-                                    <div onClick={() => handleVerifyBuyer(seller._id)} className="btn btn-error">Verify</div>
+                                    {seller.verify === 'true' ?
+                                        <div className="bg-blue-200 py-2 rounded-lg flex justify-center">
+                                            <FaCheck className='text-blue-600 text-xl' />
+                                        </div>
+                                        :
+                                        <div onClick={() => handleVerifyBuyer(seller._id, seller.email)} className="btn btn-error">Verify</div>
+                                    }
                                 </td>
                             </tr>
                         )

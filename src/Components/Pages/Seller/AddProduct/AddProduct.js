@@ -6,6 +6,7 @@ import { AuthContext } from '../../../../Context/AuthProvider';
 
 const AddProduct = () => {
     const {user} = useContext(AuthContext)
+    const [verifiedValue, setVerifiedValue] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb_key
 
@@ -13,6 +14,12 @@ const AddProduct = () => {
 
 
     const handleAddProductForm = (data) => {
+
+        // fetch(`http://localhost:5000/users?email=${user?.email}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+
+        //     })
         // 
         let categoryVAlue = 0;
         if (data.product_category === 'walton') {
@@ -57,7 +64,7 @@ const AddProduct = () => {
                         description: data.description,
                         year_purchase: data.year_purchase,
                         location: data.location,
-                        verify_user: data.verify_user,
+                        // verify_user: data.verify_user,
                     }
                     // console.log(itemInfo);
 
@@ -183,7 +190,7 @@ const AddProduct = () => {
                             </label>
                             <input {...register("year_use", { required: 'This field is required' })} type="text" placeholder="year of use" className="input input-bordered" />
                         </div>
-                        <div className="form-control">
+                        {/* <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Are you a Verified User?</span>
                             </label>
@@ -191,7 +198,7 @@ const AddProduct = () => {
                                 <option defaultValue>false</option>
                                 <option >true</option>
                             </select>
-                        </div>
+                        </div> */}
 
 
 
