@@ -15,7 +15,7 @@ const AddProduct = () => {
 
     const handleAddProductForm = (data) => {
 
-        // fetch(`http://localhost:5000/users?email=${user?.email}`)
+        // fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users?email=${user?.email}`)
         //     .then(res => res.json())
         //     .then(data => {
 
@@ -68,7 +68,7 @@ const AddProduct = () => {
                     }
                     // console.log(itemInfo);
 
-                    fetch(`http://localhost:5000/addItem`, {
+                    fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/addItem`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

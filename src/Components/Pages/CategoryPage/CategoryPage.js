@@ -12,7 +12,7 @@ const CategoryPage = () => {
     const smallPart = link.slice(link.length - 1, link.length)
     // console.log(smallPart);
 
-    const url = `http://localhost:5000/category/${smallPart}`
+    const url = `https://purana-bazar-server-arkoroybadhon.vercel.app/category/${smallPart}`
 
     // console.log(url);
 
@@ -27,7 +27,7 @@ const CategoryPage = () => {
     })
 
     const handleReportBtn = (allData) => {
-        fetch(`http://localhost:5000/report`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/report`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -46,7 +46,7 @@ const CategoryPage = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -55,11 +55,11 @@ const CategoryPage = () => {
     }, [user])
 
     return (
-        <div className='max-w-screen-xl min-h-screen mx-auto'>
+        <div className='max-w-screen max-w-screen-xl min-h-screen mx-auto'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     fridges.map((fridge, i) => <div data-aos="fade-up" key={i}>
-                        <div className="card w-96 bg-base-100 shadow-xl h-[40rem] my-5 lg:my-10">
+                        <div className="card w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl h-[40rem] my-5 lg:my-10">
                             <figure><img className='h-48' src={fridge.photo} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{fridge.name}</h2>
@@ -76,21 +76,21 @@ const CategoryPage = () => {
                                 <p>Post Time: {fridge.post}</p>
                                 <div className="flex justify-between">
                                     <div className="card-actions justify-start">
-                                        <button className="btn btn-primary">Add WishList</button>
+                                        <button className="btn btn-primary btn-sm lg:btn-md">Add WishList</button>
                                     </div>
                                     <div className="card-actions justify-end">
                                         {
                                             cUser?.role === "Buyer" ?
-                                                <button className="btn btn-primary">Book Now</button>
+                                                <button className="btn btn-primary btn-sm lg:btn-md">Book Now</button>
                                                 :
-                                                <button disabled className="btn btn-primary">Book Now</button>
+                                                <button disabled className="btn btn-sm lg:btn-md btn-primary">Book Now</button>
                                         }
                                     </div>
                                 </div>
                                 {
                                     cUser?.role === "Buyer" && <>
                                         <hr className='font-thin' />
-                                        <div onClick={() => handleReportBtn(fridge)} className="btn btn-error">Report to the Admin</div>
+                                        <div onClick={() => handleReportBtn(fridge)} className="btn btn-error btn-md lg:btn">Report to the Admin</div>
                                     </>
                                 }
                             </div>

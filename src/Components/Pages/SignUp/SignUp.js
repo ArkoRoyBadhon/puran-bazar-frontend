@@ -63,7 +63,7 @@ const SignUp = () => {
 
     const saveUser = (saveinfo) => {
         console.log('inside saaveUser',saveinfo);
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

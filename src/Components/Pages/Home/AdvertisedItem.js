@@ -7,7 +7,7 @@ const AdvertisedItem = () => {
     const { data: fridges = [] } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/getadvertisement')
+            const res = await fetch('https://purana-bazar-server-arkoroybadhon.vercel.app/getadvertisement')
             const data = res.json();
             return data
         }
@@ -20,8 +20,8 @@ const AdvertisedItem = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
                     {
                         fridges.map((fridge, i) =>
-                            <div key={i} className="">
-                                <div className="card w-96 bg-base-100 shadow-xl h-[48rem] my-5 lg:my-10">
+                            <div key={i} className="" >
+                                <div className="card w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl h-[48rem] my-5 lg:my-10">
                                     <figure><img src={fridge.photo} alt="Shoes" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{fridge.name}</h2>
@@ -37,7 +37,7 @@ const AdvertisedItem = () => {
                                                 <button className="btn btn-primary">Add WishList</button>
                                             </div> */}
                                             <div className="card-actions justify-end">
-                                                <button className="btn btn-primary">Book Now</button>
+                                                <button className="btn btn-primary btn-sm lg:btn-md">Book Now</button>
                                             </div>
                                         </div>
                                     </div>

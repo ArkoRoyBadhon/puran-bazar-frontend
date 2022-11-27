@@ -7,7 +7,7 @@ const AllSellers = () => {
     const { data: sellers = [], isLoading } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const url = "http://localhost:5000/allsellers"
+            const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allsellers"
             const res = await fetch(url);
             const data = res.json();
             return data;
@@ -15,7 +15,7 @@ const AllSellers = () => {
     })
 
     const handleDeleteBuyer = async (id) => {
-        const res = fetch(`http://localhost:5000/sellerDelete?id=${id}`, {
+        const res = fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerDelete?id=${id}`, {
             method: 'DELETE',
         })
         const data = res.json()
@@ -24,7 +24,7 @@ const AllSellers = () => {
     }
 
     const handleVerifyBuyer = (id, email) => {
-        fetch(`http://localhost:5000/sellerVerify?id=${id}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerVerify?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const AllSellers = () => {
             .then(data => alert('success'))
 
 
-        fetch(`http://localhost:5000/usersverify?email=${email}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/usersverify?email=${email}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'

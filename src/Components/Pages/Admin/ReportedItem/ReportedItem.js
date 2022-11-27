@@ -5,7 +5,7 @@ import axios from 'axios';
 const ReportedItem = () => {
     const [reportData, setReportData] = useState([])
 
-    axios.get('http://localhost:5000/report')
+    axios.get('https://purana-bazar-server-arkoroybadhon.vercel.app/report')
         .then(function (response) {
             // handle success
             console.log(response.data);
@@ -18,7 +18,7 @@ const ReportedItem = () => {
 
     const handleReportDelete = (id) => {
 
-        fetch(`http://localhost:5000/reportdelete?id=${id}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/reportdelete?id=${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
@@ -26,7 +26,7 @@ const ReportedItem = () => {
             alert("report delete")
         })
 
-        fetch(`http://localhost:5000/fridgedelete?id=${id}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
@@ -37,7 +37,7 @@ const ReportedItem = () => {
     }
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/report')
+    //     fetch('https://purana-bazar-server-arkoroybadhon.vercel.app/report')
     //         .then(res => res.json())
     //         .then(data => setReportData(data))
     //         .catch(error => console.log(error))

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <CategoryPage></CategoryPage>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({params}) => fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',

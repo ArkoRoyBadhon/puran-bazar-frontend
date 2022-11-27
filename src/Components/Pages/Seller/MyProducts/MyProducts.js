@@ -8,7 +8,7 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext)
     const [storeData, setStoreData] = useState(true);
 
-    const url = `http://localhost:5000/myproducts?email=${user?.email}`
+    const url = `https://purana-bazar-server-arkoroybadhon.vercel.app/myproducts?email=${user?.email}`
 
     const { data: fridges = [], isLoading } = useQuery({
         queryKey: ['fridges'],
@@ -23,7 +23,7 @@ const MyProducts = () => {
 
 
     const handleAdvertise = (alldata) => {
-        fetch(`http://localhost:5000/advertisementpost`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/advertisementpost`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
