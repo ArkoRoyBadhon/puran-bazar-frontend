@@ -10,6 +10,7 @@ import ModalBuy from './ModalBuy';
 const CategoryPage = () => {
     const { user } = useContext(AuthContext);
     const [cUser, SetCUser] = useState('');
+    const [modalData, SetModalData] = useState('');
     const link = window.location.pathname
     const smallPart = link.slice(link.length - 1, link.length)
     // console.log(smallPart);
@@ -49,7 +50,7 @@ const CategoryPage = () => {
 
         const name = form.name.value;
         const email = form.email.value;
-        const  itemName = form.itemName.value;
+        const itemName = form.itemName.value;
         const photo = form.photo.value;
         const price = form.price.value;
         const phone = form.phone.value;
@@ -73,15 +74,20 @@ const CategoryPage = () => {
             },
             body: JSON.stringify(formInfo)
         })
-        .then(res => res.json())
-        .then(data => {
-            alert('data successfully post')
-        })
+            .then(res => res.json())
+            .then(data => {
+                alert('data successfully post')
+            })
 
     }
 
     if (isLoading) {
         <Loading></Loading>
+    }
+
+    const handlebook = (fridge) => {
+        // console.log('inside', fridge);
+        SetModalData(fridge);
     }
 
     useEffect(() => {
@@ -120,31 +126,35 @@ const CategoryPage = () => {
                                     <div className="card-actions justify-end">
                                         {
                                             cUser?.role === "Buyer" ?
-                                                <label htmlFor="book-modal" className="btn btn-primary btn-sm lg:btn-md">Book Now</label>
+                                                <>
+                                                    <label onClick={() => handlebook(fridge)} htmlFor="book-modal" className="btn btn-primary btn-sm lg:btn-md">Book Now</label>
+                                                    {/* modal code  */}
+                                                    <input type="checkbox" id="book-modal" className="modal-toggle" />
+                                                    <div className="modal">
+                                                        <div className="modal-box">
+                                                            {
+                                                                user?.uid ?
+                                                                    <div className="">
+                                                                        <ModalBuy handleBookingForm={handleBookingForm} fridge={modalData}></ModalBuy>
+                                                                    </div>
+                                                                    :
+                                                                    <div className="">
+                                                                        <h3 className="font-bold text-lg">Sorry!! This Features is not available right now</h3>
+                                                                        <p className="py-4">Please Login with Buyer Account..</p>
+                                                                    </div>
+                                                            }
+                                                            <div className="modal-action">
+                                                                <label htmlFor="book-modal" className="btn">{user?.uid ? "cancel" : "ok"}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+
                                                 :
                                                 <label htmlFor="my-modal" className="btn btn-sm lg:btn-md btn-primary">Book Now</label>
                                         }
                                     </div>
-                                    {/* modal code  */}
-                                    <input type="checkbox" id="book-modal" className="modal-toggle" />
-                                    <div className="modal">
-                                        <div className="modal-box">
-                                            {
-                                                user?.uid ?
-                                                    <div className="">
-                                                        <ModalBuy handleBookingForm={handleBookingForm} fridge={fridge}></ModalBuy>
-                                                    </div>
-                                                    :
-                                                    <div className="">
-                                                        <h3 className="font-bold text-lg">Sorry!! This Features is not available right now</h3>
-                                                        <p className="py-4">Please Login with Buyer Account..</p>
-                                                    </div>
-                                            }
-                                            <div className="modal-action">
-                                                <label htmlFor="book-modal" className="btn">{user?.uid ? "cancel" : "ok"}</label>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     {/* modal code  */}
                                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                                     <div className="modal">

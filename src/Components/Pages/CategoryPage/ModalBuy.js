@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const ModalBuy = ({fridge,handleBookingForm}) => {
     // console.log(fridge);
+    const { user } = useContext(AuthContext);
 
-    const {name, sellerEmail, sellerName, resalePrice, photo } = fridge;
+    const { name, resalePrice, photo } = fridge;
 
-    console.log('seller email',sellerEmail);
+    // let email = sellerEmail;
+    
+    console.log('seller',fridge);
+    
 
     return (
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
@@ -15,14 +20,14 @@ const ModalBuy = ({fridge,handleBookingForm}) => {
                     <label className="label">
                         <span className="label-text">Name</span>
                     </label>
-                    <input readOnly defaultValue={sellerName} name='name' type="text" placeholder="Name" className="input input-bordered" />
+                    <input readOnly defaultValue={user?.displayName} name='name' type="text" placeholder="Name" className="input input-bordered" />
                 </div>
 
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input readOnly defaultValue={fridge.sellerEmail} name='email' type="email" placeholder="email" className="input input-bordered" />
+                    <input readOnly defaultValue={user?.email} name='email' type="email" placeholder="email" className="input input-bordered" />
                 </div>
 
                 <div className="form-control">
