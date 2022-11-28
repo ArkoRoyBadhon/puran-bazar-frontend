@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../Loader/Loading';
 
@@ -20,7 +21,7 @@ const MyOrder = () => {
 
     })
 
-    console.log('buyer', buyers)
+    // console.log('buyer', buyers)
 
     if (isLoading) {
         return <Loading></Loading>
@@ -39,7 +40,17 @@ const MyOrder = () => {
                                     <h2 className="card-title">{buyer?.itemname}</h2>
                                     <p>Price: {buyer?.price}</p>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Pay</button>
+
+                                    {
+                                        buyer.price && !buyer.paid && <Link to={`/dashboard/payment/${buyer._id}`}>
+                                            <button
+                                                className='btn btn-primary'
+                                            >Pay</button>
+                                        </Link>
+                                    }
+                                        {
+                                            buyer.price && buyer.transactionId && <span className=' text-green-500'>Paid</span>
+                                        }
                                     </div>
                                 </div>
                             </div>

@@ -18,6 +18,7 @@ import PrivateRoute from '../Pages/PrivateRoute/PrivateRoute'
 import PrivateAdmin from '../Pages/PrivateRoute/PrivateAdmin'
 import PrivateBuyer from '../Pages/PrivateRoute/PrivateBuyer'
 import PrivateSeller from '../Pages/PrivateRoute/PrivateSeller'
+import PaymentPage from '../Pages/Payment/PaymentPage'
 
 const router = createBrowserRouter([
     {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
                 element: <Dashboard></Dashboard>
             },
             {
-                path: '/dashboard/addproduct',
+            path: '/dashboard/addproduct',
                 element: <PrivateSeller><AddProduct></AddProduct></PrivateSeller>
             },
             {
@@ -85,6 +86,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reporteditems',
                 element: <PrivateAdmin><ReportedItem></ReportedItem></PrivateAdmin>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <PrivateBuyer><PaymentPage></PaymentPage></PrivateBuyer>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/63844fbcfec27c84d10d31c4`)
             },
             {
                 path: '*',
