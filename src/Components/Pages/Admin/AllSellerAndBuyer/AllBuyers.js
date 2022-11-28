@@ -32,7 +32,7 @@ const AllBuyers = () => {
 
     return (
         <div className='min-h-screen mt-10'>
-            <div className="bg-slate-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
+            <div className="bg-base-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
                 <h2 className='font-bold text-2xl text-red-600 mb-5'>Buyer List</h2>
                 <table className='table-sm md:table w-3/5 mx-auto mt-12'>
                     <thead>

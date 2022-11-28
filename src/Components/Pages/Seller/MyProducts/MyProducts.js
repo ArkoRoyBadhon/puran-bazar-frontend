@@ -39,36 +39,36 @@ const MyProducts = () => {
 
     const handleMyProduct = (id) => {
         alert(id)
-        fetch(`http://localhost:5000/fridgedelete?id=${id}`,{
+        fetch(`http://localhost:5000/fridgedelete?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            alert('delete success');
-        })
+            .then(res => res.json())
+            .then(data => {
+                alert('delete success');
+            })
     }
 
 
 
     if (isLoading) {
-        <Loading></Loading>
-    }
-
-    if (storeData) {
         return <Loading></Loading>
     }
 
+    // if (storeData) {
+    //     return <Loading></Loading>
+    // }
+
     return (
-        <div className='max-w-screen-xl mx-auto'>
-            {/* <h2>this is my products</h2> */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className=' w-full mx-auto min-h-screen bg-base-200 rounded-xl px-5 mt-10'>
+            <h2 className='font-bold text-2xl text-red-600 my-5 text-center'>My Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 ">
                 {
-                    fridges.map((fridge, i) => <div key={i}>
-                        <div className="card w-96 bg-base-100 shadow-xl h-[52rem] my-5 lg:my-10">
-                            <figure><img src={fridge.photo} alt="Shoes" /></figure>
+                    fridges?.map((fridge, i) => <div key={i}>
+                        <div className="card lg:w-96 bg-base-100 shadow-xl h-[52rem] my-5 lg:my-10">
+                            <figure><img className='h-56 w-full' src={fridge.photo} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{fridge.name}</h2>
                                 <small>{ }</small>
@@ -81,10 +81,34 @@ const MyProducts = () => {
                                 <p>Post Time: {fridge.post}</p>
                                 <div className="flex justify-between">
                                     <div className="card-actions justify-start">
-                                        <button onClick={() => handleAdvertise(fridge)} className="btn btn-primary">Advertise</button>
+                                        {/* <button onClick={() => handleAdvertise(fridge)} className="btn btn-primary">Advertise</button> */}
+                                        {
+                                            fridge?.stock === "available" ?
+                                                <>
+                                                    <button onClick={() => handleAdvertise(fridge)} className="btn btn-primary">Advertise</button>
+                                                </>
+
+                                                :
+                                                <label htmlFor="advertise-modal" className="btn btn-sm lg:btn-md btn-primary">Advertise</label>
+                                        }
+                                        {/* modal code  */}
+                                        <input type="checkbox" id="advertise-modal" className="modal-toggle" />
+                                        <div className="modal">
+                                            <div className="modal-box">
+
+                                                <div className="">
+                                                    <h3 className="font-bold text-lg">Ooops Sorry!!</h3>
+                                                    <p className="py-4">This product has no availability</p>
+                                                </div>
+
+                                                <div className="modal-action">
+                                                    <label htmlFor="advertise-modal" className="btn">ok</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="card-actions justify-end">
-                                        <button onClick={()=>handleMyProduct(fridge._id)} className="btn btn-error">Delete</button>
+                                        <button onClick={() => handleMyProduct(fridge._id)} className="btn btn-error">Delete</button>
                                     </div>
                                 </div>
                             </div>

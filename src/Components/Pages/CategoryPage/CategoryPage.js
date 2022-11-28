@@ -11,6 +11,7 @@ const CategoryPage = () => {
     const { user } = useContext(AuthContext);
     const [cUser, SetCUser] = useState('');
     const [modalData, SetModalData] = useState('');
+    const [stockData, SetStockData] = useState('');
     const link = window.location.pathname
     const smallPart = link.slice(link.length - 1, link.length)
     // console.log(smallPart);
@@ -48,6 +49,7 @@ const CategoryPage = () => {
         event.preventDefault();
         const form = event.target;
 
+        const id = form.id.value;
         const name = form.name.value;
         const email = form.email.value;
         const itemName = form.itemName.value;
@@ -57,6 +59,7 @@ const CategoryPage = () => {
         const location = form.meetLocation.value;
 
         const formInfo = {
+            id: id,
             name: name,
             email: email,
             itemname: itemName,
@@ -79,6 +82,19 @@ const CategoryPage = () => {
                 alert('data successfully post')
             })
 
+        fetch(`http://localhost:5000/fridgestock?id=${id}`, {
+            method: "PATCH",
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('data successfully post')
+            })
+
+
+
     }
 
     if (isLoading) {
@@ -87,6 +103,7 @@ const CategoryPage = () => {
 
     const handlebook = (fridge) => {
         // console.log('inside', fridge);
+        SetStockData(fridge.stock)
         SetModalData(fridge);
     }
 
@@ -99,6 +116,7 @@ const CategoryPage = () => {
             })
     }, [user])
 
+
     return (
         <div className='max-w-screen max-w-screen-xl min-h-screen mx-auto'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -108,7 +126,7 @@ const CategoryPage = () => {
                             <figure><img className='h-48' src={fridge.photo} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{fridge.name}</h2>
-                                <small>{ }</small>
+                                <small>Stock: {fridge.stock}</small>
                                 <h4 className="text-xl">Resale Price: {fridge.resalePrice} TK</h4>
                                 <h4 className="text-xl">Original Price: {fridge.originalPrice} TK</h4>
                                 <h5 className="text-lg">Used: {fridge.yearUse} years</h5>
@@ -134,13 +152,24 @@ const CategoryPage = () => {
                                                         <div className="modal-box">
                                                             {
                                                                 user?.uid ?
-                                                                    <div className="">
-                                                                        <ModalBuy handleBookingForm={handleBookingForm} fridge={modalData}></ModalBuy>
-                                                                    </div>
+                                                                    <>
+                                                                        {
+                                                                            stockData === 'sold' ?
+                                                                                <div className="">
+                                                                                    <h3 className="font-bold text-lg">Sorry!! You can't Book this product</h3>
+                                                                                    <p className="py-4">Already has been sold</p>
+                                                                                </div>
+                                                                                :
+                                                                                <div className="">
+                                                                                    <ModalBuy handleBookingForm={handleBookingForm} fridge={modalData}></ModalBuy>
+                                                                                </div>
+                                                                        }
+
+                                                                    </>
                                                                     :
                                                                     <div className="">
                                                                         <h3 className="font-bold text-lg">Sorry!! This Features is not available right now</h3>
-                                                                        <p className="py-4">Please Login with Buyer Account..</p>
+                                                                        <p className="py-4">Please Login with Buyer Account</p>
                                                                     </div>
                                                             }
                                                             <div className="modal-action">

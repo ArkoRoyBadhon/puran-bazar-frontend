@@ -5,7 +5,7 @@ import { AuthContext } from '../../../../Context/AuthProvider';
 
 
 const AddProduct = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [verifiedValue, setVerifiedValue] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const imageHostKey = process.env.REACT_APP_imgbb_key
@@ -64,7 +64,7 @@ const AddProduct = () => {
                         description: data.description,
                         year_purchase: data.year_purchase,
                         location: data.location,
-                        // verify_user: data.verify_user,
+                        stock: "available",
                     }
                     // console.log(itemInfo);
 
@@ -87,14 +87,15 @@ const AddProduct = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200 my-10">
-            <div className="hero-content flex-col lg:flex-row">
-                <div className="text-center lg:text-left w-3/5 lg:w-2/3 mx-auto">
+        <div className="hero min-h-fit bg-base-200 my-10 rounded-xl">
+            <div className="hero-content flex-col">
+                <h2 className='font-bold text-2xl text-red-600 mb-5'>Add a Product</h2>
+                {/* <div className="text-center lg:text-left w-3/5 lg:w-2/3 mx-auto">
                     <h1 className="text-2xl lg:text-5xl font-bold">Add a Product</h1>
                     <p className="py-6">SignUp Hurry !!</p>
                     <p className="">Best deals are waiting for you!! You can buy your desire refrigerator at very affordable prize</p>
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                </div> */}
+                <div className="card flex-shrink-0 w-full lg:w-[35rem] shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(handleAddProductForm)} className="card-body">
                         <div className="form-control">
                             <label className="label">

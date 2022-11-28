@@ -55,7 +55,7 @@ const AllSellers = () => {
 
     return (
         <div className='min-h-screen mt-10'>
-            <div className="bg-slate-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
+            <div className="bg-base-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
             <h2 className='font-bold text-2xl text-red-600 mb-5'>Seller List</h2>
                 <table className='table-xs md:table w-3/5 mx-auto my-12'>
                     <thead>

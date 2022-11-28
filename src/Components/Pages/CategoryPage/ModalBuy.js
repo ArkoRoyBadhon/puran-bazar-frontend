@@ -5,17 +5,21 @@ const ModalBuy = ({fridge,handleBookingForm}) => {
     // console.log(fridge);
     const { user } = useContext(AuthContext);
 
-    const { name, resalePrice, photo } = fridge;
+    const { _id,name, resalePrice, photo } = fridge;
 
     // let email = sellerEmail;
     
-    console.log('seller',fridge);
+    console.log('seller',_id);
     
 
     return (
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mx-auto">
             <h4 className="text-xl font-bold mt-2">Booking Form</h4>
             <form onSubmit={handleBookingForm} className="card-body">
+                <div className="form-control" >
+                    <input disabled defaultValue={_id} name='id' type="hidden" placeholder="id" className="input input-bordered" />
+                </div>
+
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Name</span>
