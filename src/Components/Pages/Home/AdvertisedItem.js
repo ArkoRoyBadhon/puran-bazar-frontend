@@ -13,13 +13,17 @@ const AdvertisedItem = () => {
         }
     })
 
+    if(fridges.length <= 0) {
+        return <div></div>
+    }
+
     return (
         <div className="h-[55vh] scrollbar scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
-            {/* <div class="h-64"></div> */}
+            <h4 className="text-2xl text-center font-bold mt-20 mb-8">Advertisement</h4>
             <div className='max-w-screen-xl mx-auto'>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
                     {
-                        fridges.map((fridge, i) =>
+                        fridges?.map((fridge, i) =>
                             <div key={i} className="" >
                                 <div data-aos="fade-right" className="card h-[40rem] w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl my-5 lg:my-10">
                                     <figure><img className='h-48' src={fridge.photo} alt="Shoes" /></figure>

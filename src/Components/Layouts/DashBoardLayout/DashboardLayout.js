@@ -10,8 +10,7 @@ const DashboardLayout = () => {
 
 
     useEffect(() => {
-        // fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/currentusers?email=${user?.email}`)
-        // const email = user?.email;
+
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/currentusers?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCurrentUser(data))

@@ -1,4 +1,4 @@
-import {createBrowserRouter} from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import Main from '../Layouts/MainLayout/Main'
 import AddProduct from '../Pages/Seller/AddProduct/AddProduct'
 import AllBuyers from '../Pages/Admin/AllSellerAndBuyer/AllBuyers'
@@ -15,6 +15,9 @@ import ReportedItem from '../Pages/Admin/ReportedItem/ReportedItem'
 import Dashboard from '../Pages/Dashboard/Dashboard'
 import DashboardLayout from '../Layouts/DashBoardLayout/DashboardLayout'
 import PrivateRoute from '../Pages/PrivateRoute/PrivateRoute'
+import PrivateAdmin from '../Pages/PrivateRoute/PrivateAdmin'
+import PrivateBuyer from '../Pages/PrivateRoute/PrivateBuyer'
+import PrivateSeller from '../Pages/PrivateRoute/PrivateSeller'
 
 const router = createBrowserRouter([
     {
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <CategoryPage></CategoryPage>,
-                loader: ({params}) => fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -38,13 +41,13 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp></SignUp>
             },
-            
-            
+
+
             {
                 path: '/blog',
                 element: <Blog></Blog>
             },
-            
+
             {
                 path: '*',
                 element: <ErrorPage></ErrorPage>
@@ -61,30 +64,38 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <PrivateSeller><AddProduct></AddProduct></PrivateSeller>
             },
             {
                 path: '/dashboard/myorders',
-                element: <MyOrder></MyOrder>
+                element: <PrivateBuyer><MyOrder></MyOrder></PrivateBuyer>
             },
             {
                 path: '/dashboard/allsellers',
-                element: <AllSellers></AllSellers>
+                element: <PrivateAdmin><AllSellers></AllSellers></PrivateAdmin>
             },
             {
                 path: '/dashboard/allbuyers',
-                element: <AllBuyers></AllBuyers>
+                element: <PrivateAdmin><AllBuyers></AllBuyers></PrivateAdmin>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProducts></MyProducts>
+                element: <PrivateSeller><MyProducts></MyProducts></PrivateSeller>
             },
             {
                 path: '/dashboard/reporteditems',
-                element: <ReportedItem></ReportedItem>
+                element: <PrivateAdmin><ReportedItem></ReportedItem></PrivateAdmin>
+            },
+            {
+                path: '*',
+                element: <ErrorPage></ErrorPage>
             },
         ]
-    }
+    },
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
+    },
 ])
 
 
