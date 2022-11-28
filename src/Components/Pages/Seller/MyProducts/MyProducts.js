@@ -37,19 +37,25 @@ const MyProducts = () => {
             })
     }
 
+    const handleMyProduct = (id) => {
+        alert(id)
+        fetch(`http://localhost:5000/fridgedelete?id=${id}`,{
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert('delete success');
+        })
+    }
+
 
 
     if (isLoading) {
         <Loading></Loading>
     }
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         if(storeData){
-    //             // window.location.reload(); 
-    //         }
-    //     }, 500);
-    // }, [storeData])
 
     if (storeData) {
         return <Loading></Loading>
@@ -78,7 +84,7 @@ const MyProducts = () => {
                                         <button onClick={() => handleAdvertise(fridge)} className="btn btn-primary">Advertise</button>
                                     </div>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Book Now</button>
+                                        <button onClick={()=>handleMyProduct(fridge._id)} className="btn btn-error">Delete</button>
                                     </div>
                                 </div>
                             </div>
