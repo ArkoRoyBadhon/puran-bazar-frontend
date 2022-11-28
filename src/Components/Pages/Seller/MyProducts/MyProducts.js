@@ -3,12 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 // import { set } from 'react-hook-form';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import Loading from '../../Loader/Loading';
+import toast from 'react-hot-toast'
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
     const [storeData, setStoreData] = useState(true);
 
-    const url = `https://purana-bazar-server-arkoroybadhon.vercel.app/myproducts?email=${user?.email}`
+    const url = `https://purana-bazar-server.vercel.app/myproducts?email=${user?.email}`
 
     const { data: fridges = [], isLoading } = useQuery({
         queryKey: ['fridges'],
@@ -23,7 +24,7 @@ const MyProducts = () => {
 
 
     const handleAdvertise = (alldata) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/advertisementpost`, {
+        fetch(`https://purana-bazar-server.vercel.app/advertisementpost`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -34,13 +35,14 @@ const MyProducts = () => {
             .then(res => res.json())
             .then(data => {
                 // setStoreData(data);
-                alert('successfully added to the advertisement')
+                // alert('successfully added to the advertisement')
+                toast.success('Advertisement added Successfully!')
             })
     }
 
     const handleMyProduct = (id) => {
         // alert(id)
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/fridgedelete?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +51,8 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('delete success');
+                // alert('delete success');
+                toast.success('Login Successfully!')
             })
     }
 

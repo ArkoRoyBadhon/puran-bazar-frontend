@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [pCount, setPCount] = useState(null);
@@ -32,9 +33,10 @@ const Login = () => {
                 const user = result.user
                 setLoginUserEmail(user?.email)
                 getUserToken(email)
-                
+                toast.success('Login Successfully!')
+
             })
-            .catch(err => console.error(err))
+            .catch(err => toast.error(err))
 
     }
 
@@ -50,31 +52,32 @@ const Login = () => {
                     role: "Buyer"
                 }
                 saveUser(saveinfo)
+                toast.success('Login Successfully!')
                 navigate('/')
             })
             .catch(err => console.error(err))
     }
 
     const saveUser = (saveinfo) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users`, {
+        fetch(`https://purana-bazar-server.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(saveinfo)
         })
-        .then(res => res.json())
+            .then(res => res.json())
     }
 
     const getUserToken = email => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.accessToken) {
-                localStorage.setItem('accessToken', data.accessToken)
-                navigate('/')
-            }
-        })
+        fetch(`https://purana-bazar-server.vercel.app/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken)
+                    navigate('/')
+                }
+            })
     }
 
 

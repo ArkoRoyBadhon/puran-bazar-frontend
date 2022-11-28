@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryPage></CategoryPage></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://purana-bazar-server.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <PrivateBuyer><PaymentPage></PaymentPage></PrivateBuyer>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/63844fbcfec27c84d10d31c4`)
+                loader: ({params}) => fetch(`https://purana-bazar-server.vercel.app/bookings/63844fbcfec27c84d10d31c4`)
             },
             {
                 path: '*',

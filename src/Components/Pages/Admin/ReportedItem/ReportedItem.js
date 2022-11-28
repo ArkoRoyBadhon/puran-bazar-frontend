@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast'
 
 
 const ReportedItem = () => {
     const [reportData, setReportData] = useState([])
 
-    axios.get('https://purana-bazar-server-arkoroybadhon.vercel.app/report',{
+    axios.get('https://purana-bazar-server.vercel.app/report',{
         headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -22,7 +23,7 @@ const ReportedItem = () => {
 
     const handleReportDelete = (id) => {
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/reportdelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/reportdelete?id=${id}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -30,10 +31,11 @@ const ReportedItem = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert("report delete")
+                // alert("report delete")
+                toast.success('Report delete Successfully!')
             })
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/fridgedelete?id=${id}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -41,13 +43,13 @@ const ReportedItem = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert("fridge delete")
+                // alert("fridge delete")
             })
 
     }
 
     // useEffect(() => {
-    //     fetch('https://purana-bazar-server-arkoroybadhon.vercel.app/report')
+    //     fetch('https://purana-bazar-server.vercel.app/report')
     //         .then(res => res.json())
     //         .then(data => setReportData(data))
     //         .catch(error => console.log(error))

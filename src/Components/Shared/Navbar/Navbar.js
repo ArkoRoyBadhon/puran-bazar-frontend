@@ -34,9 +34,9 @@ const Navbar = () => {
     </>
 
     useEffect(() => {
-        // fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/currentusers?email=${user?.email}`)
+        // fetch(`https://purana-bazar-server.vercel.app/currentusers?email=${user?.email}`)
         // const email = user?.email;
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/currentusers?email=${user?.email}`)
+        fetch(`https://purana-bazar-server.vercel.app/currentusers?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCurrentUser(data))
             .catch(err => console.log(err))

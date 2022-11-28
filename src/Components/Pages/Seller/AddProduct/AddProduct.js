@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../Context/AuthProvider';
+import toast from 'react-hot-toast'
 
 
 const AddProduct = () => {
@@ -15,7 +16,7 @@ const AddProduct = () => {
 
     const handleAddProductForm = (data) => {
 
-        // fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users?email=${user?.email}`)
+        // fetch(`https://purana-bazar-server.vercel.app/users?email=${user?.email}`)
         //     .then(res => res.json())
         //     .then(data => {
 
@@ -68,7 +69,7 @@ const AddProduct = () => {
                     }
                     // console.log(itemInfo);
 
-                    fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/addItem`, {
+                    fetch(`https://purana-bazar-server.vercel.app/addItem`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -79,7 +80,8 @@ const AddProduct = () => {
                         .then(data => {
                             navigate('/')
                         })
-                    alert('Successfully item added')
+                    // alert('Successfully item added')
+                    toast.success('Item added Successfully!')
                     navigate('/')
                 }
             })

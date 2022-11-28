@@ -7,7 +7,7 @@ const AdvertisedItem = () => {
     const { data: fridges = [] } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
-            const res = await fetch('https://purana-bazar-server-arkoroybadhon.vercel.app/getadvertisement')
+            const res = await fetch('https://purana-bazar-server.vercel.app/getadvertisement')
             const data = res.json();
             return data
         }

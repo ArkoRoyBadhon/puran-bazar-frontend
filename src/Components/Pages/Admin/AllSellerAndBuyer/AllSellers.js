@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../../Loader/Loading';
 import { FaCheck } from 'react-icons/fa';
+import toast from 'react-hot-toast'
 
 const AllSellers = () => {
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allsellers"
+            const url = "https://purana-bazar-server.vercel.app/allsellers"
             const res = await fetch(url, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -19,7 +20,7 @@ const AllSellers = () => {
     })
 
     const handleDeleteSeller = async (id) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerDelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/sellerDelete?id=${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +28,8 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('user deleted')
+                // alert('user deleted')
+                toast.success('user delete Successfully!')
                 refetch()
             })
         // sellers = data
@@ -36,7 +38,7 @@ const AllSellers = () => {
     }
 
     const handleVerifyBuyer = (id, email) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerVerify?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/sellerVerify?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -47,7 +49,7 @@ const AllSellers = () => {
             .then(data => alert('success'))
 
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/usersverify?email=${email}`, {
+        fetch(`https://purana-bazar-server.vercel.app/usersverify?email=${email}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',
@@ -56,7 +58,7 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('fridge update')
+                // alert('fridge update')
             })
 
         refetch()

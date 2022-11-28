@@ -6,6 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 // import { useLoaderData } from 'react-router-dom';
 import Loading from '../Loader/Loading';
 import ModalBuy from './ModalBuy';
+import toast from 'react-hot-toast'
 
 const CategoryPage = () => {
     const { user } = useContext(AuthContext);
@@ -16,7 +17,7 @@ const CategoryPage = () => {
     const smallPart = link.slice(link.length - 1, link.length)
     // console.log(smallPart);
 
-    const url = `https://purana-bazar-server-arkoroybadhon.vercel.app/category/${smallPart}`
+    const url = `https://purana-bazar-server.vercel.app/category/${smallPart}`
 
     // console.log(url);
 
@@ -31,7 +32,7 @@ const CategoryPage = () => {
     })
 
     const handleReportBtn = (allData) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/report`, {
+        fetch(`https://purana-bazar-server.vercel.app/report`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -41,7 +42,8 @@ const CategoryPage = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                alert('report added')
+                // alert('report added')
+                toast.success('Report added Successfully!')
             })
     }
 
@@ -70,7 +72,7 @@ const CategoryPage = () => {
         }
 
         console.log(formInfo);
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/bookings`, {
+        fetch(`https://purana-bazar-server.vercel.app/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -79,10 +81,10 @@ const CategoryPage = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('data successfully post')
+                // alert('data successfully post')
             })
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgestock?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/fridgestock?id=${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -90,11 +92,11 @@ const CategoryPage = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('data successfully update')
+                // alert('data successfully update')
             })
 
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/advertiseDelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/advertiseDelete?id=${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'
@@ -102,7 +104,8 @@ const CategoryPage = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('data successfully deleted')
+                // alert('data successfully deleted')
+                toast.success('Data added Successfully!')
             })
 
     }
@@ -118,7 +121,7 @@ const CategoryPage = () => {
     }
 
     useEffect(() => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users?email=${user?.email}`)
+        fetch(`https://purana-bazar-server.vercel.app/users?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

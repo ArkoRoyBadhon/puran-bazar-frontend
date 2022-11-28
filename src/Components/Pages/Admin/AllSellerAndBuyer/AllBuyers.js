@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import Loading from '../../Loader/Loading';
+import toast from 'react-hot-toast'
 
 const AllBuyers = () => {
     const { deleteUserFromFirebase } = useContext(AuthContext);
@@ -9,7 +10,7 @@ const AllBuyers = () => {
     const { data: buyers = [], isLoading,refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allbuyers"
+            const url = "https://purana-bazar-server.vercel.app/allbuyers"
             const res = await fetch(url, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -22,7 +23,7 @@ const AllBuyers = () => {
 
     const handleDeleteBuyer = async (id, email) => {
 
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/buyerDelete?id=${id}`, {
+        fetch(`https://purana-bazar-server.vercel.app/buyerDelete?id=${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -30,7 +31,8 @@ const AllBuyers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                alert('user deleted')
+                // alert('user deleted')
+                toast.success('User Deleted Successfully!')
                 refetch()
             })
 

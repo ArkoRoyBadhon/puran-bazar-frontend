@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast from 'react-hot-toast'
 
 
 const SignUp = () => {
@@ -28,7 +29,7 @@ const SignUp = () => {
         signUpWithEmail(email, password)
             .then(res => {
                 const user = res.user
-                alert('success signup')
+                toast.success('SignUp Successfully!')
                 const info = {
                     displayName: name
                 }
@@ -63,6 +64,7 @@ const SignUp = () => {
                     role: "Buyer"
                 }
                 saveUser(saveinfo)
+                toast.success('SignUp Successfully!')
                 navigate('/')
             })
             .catch(err => console.error(err))
@@ -70,7 +72,7 @@ const SignUp = () => {
 
     const saveUser = (saveinfo) => {
         console.log('inside saaveUser', saveinfo);
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users`, {
+        fetch(`https://purana-bazar-server.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
