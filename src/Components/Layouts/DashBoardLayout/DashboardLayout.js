@@ -31,7 +31,7 @@ const DashboardLayout = () => {
 
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                    <ul className="menu p-4 w-80 text-base-content">
                         <h3 className="text-2xl font-bold mt-10">Dashboard Links</h3>
                         {
                             currentUser?.role === 'Buyer' && <>

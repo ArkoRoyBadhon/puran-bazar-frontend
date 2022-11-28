@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <CategoryPage></CategoryPage>,
+                element: <PrivateRoute><CategoryPage></CategoryPage></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/category/${params.id}`)
             },
             {

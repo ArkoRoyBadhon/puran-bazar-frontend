@@ -18,7 +18,7 @@ const PrivateSeller = ({children}) => {
     }, [user])
 
 
-    if(currentUser?.role === 'Admin') {
+    if(currentUser?.role === 'Seller') {
         return children;
     }
 

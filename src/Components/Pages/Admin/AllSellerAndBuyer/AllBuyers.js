@@ -10,7 +10,11 @@ const AllBuyers = () => {
         queryKey: ['buyers'],
         queryFn: async () => {
             const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allbuyers"
-            const res = await fetch(url);
+            const res = await fetch(url,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = res.json();
             return data;
         }
@@ -22,7 +26,6 @@ const AllBuyers = () => {
             .then(() => alert('user delete from firebase'))
 
     }
-
 
 
     if (isLoading) {

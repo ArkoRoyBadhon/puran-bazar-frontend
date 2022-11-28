@@ -137,6 +137,7 @@ const CategoryPage = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{fridge.name}</h2>
                                 <small>Stock: {fridge.stock}</small>
+                                <p className="">Location: {fridge.location}</p>
                                 <h4 className="text-xl">Resale Price: {fridge.resalePrice} TK</h4>
                                 <h4 className="text-xl">Original Price: {fridge.originalPrice} TK</h4>
                                 <h5 className="text-lg">Used: {fridge.yearUse} years</h5>

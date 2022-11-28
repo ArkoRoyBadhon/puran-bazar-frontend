@@ -62,7 +62,7 @@ const MyProducts = () => {
     // }
 
     return (
-        <div className=' w-full mx-auto min-h-screen bg-base-200 rounded-xl px-5 mt-10'>
+        <div className=' w-full mx-auto h-fit bg-base-200 rounded-xl px-5 mt-10'>
             <h2 className='font-bold text-2xl text-red-600 my-5 text-center'>My Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 ">
                 {

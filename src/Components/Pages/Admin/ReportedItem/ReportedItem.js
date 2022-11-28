@@ -5,7 +5,11 @@ import axios from 'axios';
 const ReportedItem = () => {
     const [reportData, setReportData] = useState([])
 
-    axios.get('https://purana-bazar-server-arkoroybadhon.vercel.app/report')
+    axios.get('https://purana-bazar-server-arkoroybadhon.vercel.app/report',{
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
         .then(function (response) {
             // handle success
             console.log(response.data);
@@ -19,7 +23,10 @@ const ReportedItem = () => {
     const handleReportDelete = (id) => {
 
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/reportdelete?id=${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -27,7 +34,10 @@ const ReportedItem = () => {
             })
 
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {

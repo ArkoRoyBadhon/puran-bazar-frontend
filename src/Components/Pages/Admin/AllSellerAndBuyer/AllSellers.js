@@ -37,7 +37,8 @@ const AllSellers = () => {
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/usersverify?email=${email}`, {
             method: "PATCH",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())

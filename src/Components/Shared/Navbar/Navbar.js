@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { otherContext } from '../../../Context/FeatureContext';
 
@@ -9,9 +9,13 @@ const Navbar = () => {
     const { handleClick } = useContext(otherContext);
     const { user, logOut } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                navigate('/login')
+            })
             .catch(err => console.error(err))
     }
 

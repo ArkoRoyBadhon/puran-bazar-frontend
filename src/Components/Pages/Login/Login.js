@@ -1,15 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Login = () => {
     const [pCount, setPCount] = useState(null);
     const { user: CurrentUser, LogIn, GoogleSinUp } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [loginUserEmail, setLoginUserEmail] = useState('')
+    const location = useLocation();
 
-    // console.log('outside', pCount);
 
-    // console.log('final', pCount);
+    // const from = location.state?.from?.pathname || '/';
+
+
 
     const handleLoginForm = (event) => {
 
@@ -27,7 +30,9 @@ const Login = () => {
         LogIn(email, password)
             .then(result => {
                 const user = result.user
-                navigate('/')
+                setLoginUserEmail(user?.email)
+                getUserToken(email)
+                
             })
             .catch(err => console.error(err))
 
@@ -48,16 +53,27 @@ const Login = () => {
                 navigate('/')
             })
             .catch(err => console.error(err))
-
     }
 
     const saveUser = (saveinfo) => {
-        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users`, {
+        fetch(`http://localhost:5000/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(saveinfo)
+        })
+        .then(res => res.json())
+    }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.accessToken) {
+                localStorage.setItem('accessToken', data.accessToken)
+                navigate('/')
+            }
         })
     }
 
@@ -87,7 +103,7 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-gradient-to-r from-cyan-500 to-blue-500 font-bold">Login</button>
+                            <button className="btn bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-white">Login</button>
                         </div>
                         <p>New to PuranaBazar?? <Link to='/signup'>SignUp</Link></p>
                         <hr className='font-thin' />

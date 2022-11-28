@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
+
 const SignUp = () => {
 
-    const { signUpWithEmail, updateUser, GoogleSinUp } = useContext(AuthContext);
+    const { signUpWithEmail, updateUser, GoogleSinUp, logOut } = useContext(AuthContext);
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const navigate = useNavigate(createdUserEmail);
 
-    const navigate = useNavigate();
 
     const handleSignUpForm = (event) => {
         event.preventDefault();
@@ -26,7 +28,7 @@ const SignUp = () => {
         signUpWithEmail(email, password)
             .then(res => {
                 const user = res.user
-                // alert('success signup')
+                alert('success signup')
                 const info = {
                     displayName: name
                 }
@@ -38,7 +40,12 @@ const SignUp = () => {
                     .catch(err => console.error(err))
 
                 form.reset()
-                navigate('/')
+                logOut()
+                    .then(() => {
+                        navigate('/login')
+                    })
+                    .catch(err => console.error(err))
+                navigate('/login')
             })
             .catch(err => {
                 console.error(err);
@@ -62,7 +69,7 @@ const SignUp = () => {
     }
 
     const saveUser = (saveinfo) => {
-        console.log('inside saaveUser',saveinfo);
+        console.log('inside saaveUser', saveinfo);
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/users`, {
             method: 'POST',
             headers: {
@@ -73,7 +80,7 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
-                console.log('user saved');
+                setCreatedUserEmail(saveinfo.email);
             })
             .catch(err => console.error(err.message))
     }
