@@ -35,7 +35,8 @@ const CategoryPage = () => {
         fetch(`https://purana-bazar-server.vercel.app/report`, {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(allData)
         })
@@ -75,7 +76,8 @@ const CategoryPage = () => {
         fetch(`https://purana-bazar-server.vercel.app/bookings`, {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(formInfo)
         })
