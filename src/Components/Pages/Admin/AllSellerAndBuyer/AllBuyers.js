@@ -6,11 +6,11 @@ import Loading from '../../Loader/Loading';
 const AllBuyers = () => {
     const { deleteUserFromFirebase } = useContext(AuthContext);
 
-    const { data: buyers = [], isLoading } = useQuery({
+    const { data: buyers = [], isLoading,refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
             const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allbuyers"
-            const res = await fetch(url,{
+            const res = await fetch(url, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -22,8 +22,20 @@ const AllBuyers = () => {
 
     const handleDeleteBuyer = async (id, email) => {
 
-        deleteUserFromFirebase(email)
-            .then(() => alert('user delete from firebase'))
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/buyerDelete?id=${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('user deleted')
+                refetch()
+            })
+
+        // deleteUserFromFirebase(email)
+        //     .then(() => alert('user delete from firebase'))
 
     }
 

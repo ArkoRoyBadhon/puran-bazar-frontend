@@ -4,30 +4,43 @@ import Loading from '../../Loader/Loading';
 import { FaCheck } from 'react-icons/fa';
 
 const AllSellers = () => {
-    const { data: sellers = [], isLoading } = useQuery({
+    const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const url = "https://purana-bazar-server-arkoroybadhon.vercel.app/allsellers"
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = res.json();
             return data;
         }
     })
 
-    const handleDeleteBuyer = async (id) => {
-        const res = fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerDelete?id=${id}`, {
+    const handleDeleteSeller = async (id) => {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerDelete?id=${id}`, {
             method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
-        const data = res.json()
-        sellers = data
-        return sellers;
+            .then(res => res.json())
+            .then(data => {
+                alert('user deleted')
+                refetch()
+            })
+        // sellers = data
+
+        // return sellers;
     }
 
     const handleVerifyBuyer = (id, email) => {
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/sellerVerify?id=${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -46,6 +59,7 @@ const AllSellers = () => {
                 alert('fridge update')
             })
 
+        refetch()
 
     }
 
@@ -57,7 +71,7 @@ const AllSellers = () => {
     return (
         <div className='min-h-screen mt-10'>
             <div className="bg-base-200 px-10 rounded-2xl mb-10 max-w-screen-lg mx-auto min-h-screen py-10">
-            <h2 className='font-bold text-2xl text-red-600 mb-5'>Seller List</h2>
+                <h2 className='font-bold text-2xl text-red-600 mb-5'>Seller List</h2>
                 <table className='table-xs md:table w-3/5 mx-auto my-12'>
                     <thead>
                         <tr>
@@ -76,7 +90,7 @@ const AllSellers = () => {
                                     <td>{seller.email}</td>
                                     <td>{seller.role}</td>
                                     <td>
-                                        <div onClick={() => handleDeleteBuyer(seller._id)} className="btn btn-error btn-sm p-0 m-0 md:btn-md">Delete</div>
+                                        <div onClick={() => handleDeleteSeller(seller._id)} className="btn btn-error btn-sm p-0 m-0 md:btn-md">Delete</div>
                                     </td>
                                     <td>
                                         {seller.verify === 'true' ?

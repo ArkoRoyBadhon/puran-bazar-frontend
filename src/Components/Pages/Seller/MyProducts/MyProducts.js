@@ -26,7 +26,8 @@ const MyProducts = () => {
         fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/advertisementpost`, {
             method: "POST",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(alldata)
         })
@@ -38,11 +39,12 @@ const MyProducts = () => {
     }
 
     const handleMyProduct = (id) => {
-        alert(id)
-        fetch(`http://localhost:5000/fridgedelete?id=${id}`, {
+        // alert(id)
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgedelete?id=${id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -98,7 +100,7 @@ const MyProducts = () => {
 
                                                 <div className="">
                                                     <h3 className="font-bold text-lg">Ooops Sorry!!</h3>
-                                                    <p className="py-4">This product has no availability</p>
+                                                    <p className="py-4">This product has no availability or has been sold</p>
                                                 </div>
 
                                                 <div className="modal-action">

@@ -70,7 +70,7 @@ const CategoryPage = () => {
         }
 
         console.log(formInfo);
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -82,7 +82,7 @@ const CategoryPage = () => {
                 alert('data successfully post')
             })
 
-        fetch(`http://localhost:5000/fridgestock?id=${id}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/fridgestock?id=${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -94,7 +94,7 @@ const CategoryPage = () => {
             })
 
 
-        fetch(`http://localhost:5000/advertiseDelete?id=${id}`, {
+        fetch(`https://purana-bazar-server-arkoroybadhon.vercel.app/advertiseDelete?id=${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'

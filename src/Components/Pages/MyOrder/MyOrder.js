@@ -5,7 +5,7 @@ import Loading from '../Loader/Loading';
 
 const MyOrder = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://purana-bazar-server-arkoroybadhon.vercel.app/bookings?email=${user?.email}`
     const { data: buyers = [], isLoading } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
