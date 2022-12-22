@@ -72,8 +72,8 @@ const CategoryPage = () => {
             location: location
         }
 
-        console.log(formInfo);
-        fetch(`https://purana-bazar-server.vercel.app/bookings`, {
+        // console.log(formInfo);
+        fetch(`http://localhost:5000/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -112,9 +112,7 @@ const CategoryPage = () => {
 
     }
 
-    if (isLoading) {
-        <Loading></Loading>
-    }
+
 
     const handlebook = (fridge) => {
         // console.log('inside', fridge);
@@ -131,12 +129,14 @@ const CategoryPage = () => {
             })
     }, [user])
 
-
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div className='max-w-screen max-w-screen-xl h-fit mx-auto'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    fridges.map((fridge, i) => <div data-aos="fade-up" key={i}>
+                    fridges?.map((fridge, i) => <div data-aos="fade-up" key={i}>
                         <div className="card w-4/5 mx-auto lg:w-96 bg-base-100 shadow-xl h-[50rem] my-5 lg:my-10">
                             <figure><img className='h-72 w-full' src={fridge.photo} alt="Shoes" /></figure>
                             <div className="card-body">

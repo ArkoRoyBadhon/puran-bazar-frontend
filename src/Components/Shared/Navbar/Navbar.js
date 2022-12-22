@@ -16,7 +16,10 @@ const Navbar = () => {
             .then(() => {
                 navigate('/login')
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err)
+                navigate('/')
+            })
     }
 
     // console.log(user?.email);
@@ -29,17 +32,19 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/dashboard'>DashBoard</Link></li>
-        
-        
+
+
     </>
 
     useEffect(() => {
         // fetch(`https://purana-bazar-server.vercel.app/currentusers?email=${user?.email}`)
         // const email = user?.email;
-        fetch(`https://purana-bazar-server.vercel.app/currentusers?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setCurrentUser(data))
-            .catch(err => console.log(err))
+        if (user?.email) {
+            fetch(`https://purana-bazar-server.vercel.app/currentusers?email=${user?.email}`)
+                .then(res => res.json())
+                .then(data => setCurrentUser(data))
+                .catch(err => console.log(err))
+        }
     }, [user])
 
     const status = localStorage.getItem('theme')

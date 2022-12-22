@@ -34,7 +34,7 @@ const Home = () => {
                 <h6 className="text-xl">Please Select a Category to buy Products</h6>
                 <div className="w-3/5 mx-auto my-8">
                     {
-                        categories.map(category =>
+                        categories?.map(category =>
                             <div key={category.id} className="btn w-full"><Link to={`/category/${category.id}`}>{category.name}</Link></div>)
                     }
                 </div>
