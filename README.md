@@ -29,5 +29,5 @@
 
 
 ## Admin
-- arko@gmail.com
+- arkoadmin@gmail.com
 - ARKO@#$1
